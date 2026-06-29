@@ -202,7 +202,7 @@ a{color:var(--accent);text-decoration:none;}
 .mc.future{opacity:.58;}
 
 .mc-hdr{
-  padding:3px 8px;background:var(--card2);
+  padding:2px 8px;background:var(--card2);
   border-bottom:1px solid var(--border);
   display:flex;justify-content:space-between;align-items:center;
 }
@@ -212,7 +212,7 @@ a{color:var(--accent);text-decoration:none;}
 .b-done{background:rgba(52,208,88,.12);color:var(--green);}
 .b-future{background:var(--border);color:var(--muted);}
 
-.mc-p{display:flex;align-items:center;gap:6px;padding:6px 8px;
+.mc-p{display:flex;align-items:center;gap:6px;padding:4px 8px;
   transition:background var(--tr);}
 .mc-p.win{background:var(--green-dim);}
 .mc-p.lose{opacity:.33;}
@@ -550,11 +550,11 @@ function renderTree(vm, pMap, matchById, canvas) {
   rounds.forEach(r => { byRound[r] = vm.filter(m=>m.round_id===r); });
 
   const mob    = window.innerWidth <= 680;
-  const CARD_W = mob ? 164 : 200;
-  const CARD_H = 76;   // hdr(20) + row(27) + sep(1) + row(27) + 1
-  const CON_W  = 40;
+  const CARD_W = mob ? 180 : 240;
+  const CARD_H = 58;   // hdr(20) + row(27) + sep(1) + row(27) + 1
+  const CON_W  = 60;
   const LABEL_H = 26;
-  const BASE_SPACING = CARD_H + 14;
+  const BASE_SPACING = CARD_H + 6;
 
   let html = `<div class="bracket-inner" id="bracket-inner"><div class="b-stage">`;
 
@@ -639,7 +639,7 @@ function renderTree(vm, pMap, matchById, canvas) {
 function renderList(vm, pMap, matchById, canvas) {
   const rounds = [...new Set(vm.map(m=>m.round_id))].sort((a,b)=>a-b);
   const mob    = window.innerWidth <= 680;
-  const CW     = mob ? 164 : 200;
+  const CW     = mob ? 180 : 240;
   let html = `<div class="bracket-inner" id="bracket-inner">`;
   rounds.forEach(r => {
     const rm = vm.filter(m=>m.round_id===r);

@@ -545,31 +545,68 @@ function getViewMatches(matches) {
 
 // ── TREE VIEW — Challonge style with connectors
 function renderTree(vm, pMap, matchById, canvas) {
-  const rounds = [...new Set(vm.map(m=>m.round_id))].sort((a,b)=>a-b);
+  const rounds  = [...new Set(vm.map(m=>m.round_id))].sort((a,b)=>a-b);
   const byRound = {};
   rounds.forEach(r => { byRound[r] = vm.filter(m=>m.round_id===r); });
 
-  const mob    = window.innerWidth <= 680;
-  const CARD_W = mob ? 180 : 240;
-  const CARD_H = 58;   // hdr(20) + row(27) + sep(1) + row(27) + 1
-  const CON_W  = 60;
-  const LABEL_H = 26;
-  const BASE_SPACING = CARD_H + 6;
+  const mob     = window.innerWidth <= 680;
+  const CARD_W  = mob ? 180 : 240;
+  const CARD_H  = 62;
+  const CON_W   = 56;
+  const LABEL_H = 28;
+  const V_GAP   = 16; // fixed gap between cards — same every round
 
-  let html = `<div class="bracket-inner" id="bracket-inner"><div class="b-stage">`;
+  // In Challonge the vertical centre of each card in round N is evenly spaced.
+  // The trick: round 1 has the densest packing. Each later round has cards
+  // centred between the two feeders from the previous round.
+  // We pre-compute Y centres for every match using the round-1 grid, then
+  // position everything relative to those centres.
+
+  // Step 1: assign a "leaf index" to every round-1 match (0,1,2,3…)
+  // Each match in round N covers 2^(N-1) leaf slots.
+  const r1 = byRound[rounds[0]];
+  const SLOT_H = CARD_H + V_GAP; // height of one round-1 slot
+
+  // Build centre-Y for every match keyed by match id
+  const centreY = {};
+
+  // Round 1: cards stacked with fixed gap
+  r1.forEach((m, i) => {
+    centreY[m.id] = i * SLOT_H + CARD_H / 2;
+  });
+
+  // Subsequent rounds: centre = average of the two feeder centres
+  for (let ri = 1; ri < rounds.length; ri++) {
+    const rMatches = byRound[rounds[ri]];
+    const prev     = byRound[rounds[ri-1]];
+    rMatches.forEach((m, i) => {
+      const f1 = prev[i*2];
+      const f2 = prev[i*2+1];
+      if (f1 && f2) {
+        centreY[m.id] = (centreY[f1.id] + centreY[f2.id]) / 2;
+      } else if (f1) {
+        centreY[m.id] = centreY[f1.id];
+      } else {
+        centreY[m.id] = i * SLOT_H * Math.pow(2, ri) + CARD_H / 2;
+      }
+    });
+  }
+
+  // Total height = last round-1 card bottom + padding
+  const totalH = (r1.length - 1) * SLOT_H + CARD_H + 32;
+
+  let html = `<div class="bracket-inner" id="bracket-inner"><div class="b-stage" style="align-items:flex-start;">`;
 
   rounds.forEach((r, ri) => {
     const rMatches = byRound[r];
-    const mult     = Math.pow(2, ri);
-    const slotH    = BASE_SPACING * mult;
-    const totalH   = slotH * rMatches.length + (slotH - CARD_H);
 
     html += `<div class="b-round" style="width:${CARD_W}px;">`;
     html += `<div class="b-round-lbl">${roundName(r, rounds.length, view)}</div>`;
     html += `<div style="position:relative;height:${totalH}px;">`;
 
-    rMatches.forEach((m, mi) => {
-      const top = mi * slotH + (slotH - CARD_H) / 2;
+    rMatches.forEach((m) => {
+      const cy  = centreY[m.id] ?? 0;
+      const top = cy - CARD_H / 2;
       html += `<div style="position:absolute;top:${top}px;left:0;right:0;">`;
       html += buildMatchCard(m, pMap, matchById, CARD_W);
       html += `</div>`;
@@ -581,9 +618,7 @@ function renderTree(vm, pMap, matchById, canvas) {
     if (ri < rounds.length - 1) {
       const nextR       = rounds[ri+1];
       const nextMatches = byRound[nextR];
-      const nextMult    = mult * 2;
-      const nextSlotH   = BASE_SPACING * nextMult;
-      const svgH        = Math.max(totalH, nextSlotH * nextMatches.length + nextSlotH) + 60;
+      const lineCol     = view==='L' ? 'var(--lose-line)' : 'var(--win-line)';
 
       let paths = '';
 
@@ -593,39 +628,34 @@ function renderTree(vm, pMap, matchById, canvas) {
         const nextM = nextMatches[Math.floor(i/2)];
         if (!nextM) continue;
 
-        const y1    = i * slotH + slotH/2;
-        const y2    = m2 ? ((i+1) * slotH + slotH/2) : y1;
+        const y1    = centreY[m1.id] ?? 0;
+        const y2    = m2 ? (centreY[m2.id] ?? 0) : y1;
         const yMid  = (y1 + y2) / 2;
-        const yNext = Math.floor(i/2) * nextSlotH + nextSlotH/2;
+        const yNext = centreY[nextM.id] ?? 0;
 
-        const lineCol = view==='L' ? 'var(--lose-line)' : 'var(--win-line)';
         const bothDone = m1.state==='complete' && (!m2 || m2.state==='complete');
-        const op       = bothDone ? '0.75' : '0.32';
+        const op       = bothDone ? '0.8' : '0.3';
         const dash     = bothDone ? '' : 'stroke-dasharray="5,3"';
 
-        // horizontal from m1 centre-right
         paths += `<line x1="0" y1="${y1}" x2="${CON_W/2}" y2="${y1}" stroke="${lineCol}" stroke-width="1.5" opacity="${op}" ${dash}/>`;
-        // horizontal from m2 centre-right
         if (m2) paths += `<line x1="0" y1="${y2}" x2="${CON_W/2}" y2="${y2}" stroke="${lineCol}" stroke-width="1.5" opacity="${op}" ${dash}/>`;
-        // vertical join between m1 and m2
         paths += `<line x1="${CON_W/2}" y1="${y1}" x2="${CON_W/2}" y2="${y2}" stroke="${lineCol}" stroke-width="1.5" opacity="${op}" ${dash}/>`;
-        // horizontal to next match
         paths += `<line x1="${CON_W/2}" y1="${yMid}" x2="${CON_W}" y2="${yNext}" stroke="${lineCol}" stroke-width="1.5" opacity="${op}" ${dash}/>`;
       }
 
-      // odd match (bye direct advance)
+      // odd match
       if (rMatches.length % 2 === 1) {
-        const lastM  = rMatches[rMatches.length-1];
-        const nextM  = nextMatches[Math.floor((rMatches.length-1)/2)];
+        const lastM = rMatches[rMatches.length-1];
+        const nextM = nextMatches[Math.floor((rMatches.length-1)/2)];
         if (nextM) {
-          const y1    = (rMatches.length-1)*slotH + slotH/2;
-          const yNext = Math.floor((rMatches.length-1)/2)*nextSlotH + nextSlotH/2;
-          paths += `<line x1="0" y1="${y1}" x2="${CON_W}" y2="${yNext}" stroke="var(--win-line)" stroke-width="1.5" opacity="0.25" stroke-dasharray="4,3"/>`;
+          const y1    = centreY[lastM.id] ?? 0;
+          const yNext = centreY[nextM.id] ?? 0;
+          paths += `<line x1="0" y1="${y1}" x2="${CON_W}" y2="${yNext}" stroke="${lineCol}" stroke-width="1.5" opacity="0.25" stroke-dasharray="4,3"/>`;
         }
       }
 
       html += `<div class="b-con" style="width:${CON_W}px;margin-top:${LABEL_H}px;">
-        <svg width="${CON_W}" height="${svgH}" style="overflow:visible;">${paths}</svg>
+        <svg width="${CON_W}" height="${totalH}" style="overflow:visible;">${paths}</svg>
       </div>`;
     }
   });

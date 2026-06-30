@@ -239,6 +239,45 @@ a{color:var(--accent);text-decoration:none;}
 .mob-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);
   z-index:190;opacity:0;transition:opacity var(--tr);pointer-events:none;}
 
+/* extra animation polish */
+.sidebar .info-row{animation:rowIn .3s ease both;}
+.sidebar .info-row:nth-child(1){animation-delay:.02s;}
+.sidebar .info-row:nth-child(2){animation-delay:.05s;}
+.sidebar .info-row:nth-child(3){animation-delay:.08s;}
+.sidebar .info-row:nth-child(4){animation-delay:.11s;}
+.sidebar .info-row:nth-child(5){animation-delay:.14s;}
+.sidebar .info-row:nth-child(6){animation-delay:.17s;}
+.sidebar .info-row:nth-child(7){animation-delay:.20s;}
+.sidebar .info-row:nth-child(8){animation-delay:.23s;}
+@keyframes rowIn{from{opacity:0;transform:translateX(-6px);}to{opacity:1;transform:translateX(0);}}
+
+.p-row{animation:rowIn .25s ease both;}
+
+.tab{position:relative;}
+.tab.active::after{
+  content:'';position:absolute;bottom:-3px;left:50%;
+  width:4px;height:4px;border-radius:50%;background:currentColor;
+  transform:translateX(-50%);opacity:.6;
+}
+
+.mc{will-change:transform;}
+.mc-p{position:relative;overflow:hidden;}
+.mc-p.win::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:2px;
+  background:var(--green);animation:slideBar .3s ease both;
+}
+@keyframes slideBar{from{height:0;}to{height:100%;}}
+
+#auth-box img{transition:transform var(--tr);}
+#auth-box img:hover{transform:scale(1.1);}
+
+.dot{box-shadow:0 0 0 0 rgba(52,208,88,.5);animation:blink 2s infinite,ringPulse 2s infinite;}
+@keyframes ringPulse{
+  0%{box-shadow:0 0 0 0 rgba(52,208,88,.4);}
+  70%{box-shadow:0 0 0 6px rgba(52,208,88,0);}
+  100%{box-shadow:0 0 0 0 rgba(52,208,88,0);}
+}
+
 @media(max-width:680px){
   :root{--sb:82vw;}
   .sidebar{position:fixed;top:var(--hdr);left:0;bottom:0;
@@ -265,6 +304,7 @@ a{color:var(--accent);text-decoration:none;}
     <div class="hdr-title" id="hdr-title">Loading…</div>
     <div class="hdr-sub" id="hdr-sub">Goldi Bot · Live Bracket</div>
   </div>
+  <div id="auth-box" style="display:flex;align-items:center;gap:7px;flex-shrink:0;"></div>
   <a class="hdr-back" href="index.html">← All</a>
 </div>
 
@@ -333,9 +373,41 @@ a{color:var(--accent);text-decoration:none;}
   </div>
 </div>
 
+<script src="auth.js"></script>
 <script>
 // ── CONFIG ── change this to your GitHub Pages URL
 const DATA_BASE = "https://goldi-calc.github.io/brackets/data";
+
+// ── AUTH UI ──────────────────────────────────────────────────
+function renderAuthBox() {
+  const box = document.getElementById('auth-box');
+  if (!box) return;
+  if (GoldiAuth.isLoggedIn()) {
+    const user = GoldiAuth.getUser();
+    const avatar = GoldiAuth.avatarUrl(user);
+    box.innerHTML = `<img src="${avatar}" title="${esc(user.username)}"
+      style="width:26px;height:26px;border-radius:50%;border:1px solid var(--border);">`;
+  } else {
+    box.innerHTML = `<button class="share-btn" onclick="doLogin()" style="display:flex;align-items:center;gap:5px;">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.076.076 0 0 0-.04.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+      Login
+    </button>`;
+  }
+}
+function doLogin() {
+  sessionStorage.setItem('goldi_return_to', location.href);
+  GoldiAuth.login();
+}
+
+// Returns true if the logged-in user is in the same Discord guild as this
+// tournament's server_name (best-effort name match against their guild list).
+function isLikelyManager() {
+  if (!GoldiAuth.isLoggedIn() || !D) return false;
+  const guilds = GoldiAuth.getGuilds();
+  const serverName = (D.server_name || '').toLowerCase();
+  return guilds.some(g => (g.name||'').toLowerCase() === serverName &&
+    (BigInt(g.permissions||0) & BigInt(0x10000000)) !== 0n); // MANAGE_ROLES bit, best-effort
+}
 
 // ── STATE
 let D        = null;
@@ -426,6 +498,7 @@ document.addEventListener('touchend', () => { lastPinch = null; });
 
 // ── LOAD
 async function load() {
+  renderAuthBox();
   if (!slug) { showErr('No tournament specified', 'Use ?t=server_tourney'); return; }
   try {
     const r = await fetch(`${DATA_BASE}/tournament_${slug}.json?_=${Date.now()}`);
@@ -701,12 +774,36 @@ function buildMatchCard(m, pMap, matchById, cardW) {
       : '<span class="mc-badge b-future">UPCOMING</span>';
   const lbl = `${m.bracket==='L'?'L':'W'}${m.round_id}·M${m.match_order}`;
 
+  // Show a "Report" deep-link if: match is live AND
+  // (logged-in user is one of the two players, OR looks like a manager)
+  let reportBtn = '';
+  if (isLive && GoldiAuth.isLoggedIn()) {
+    const user = GoldiAuth.getUser();
+    const isPlayer = (p1 && String(p1.external_id)===String(user.id)) ||
+                      (p2 && String(p2.external_id)===String(user.id));
+    const isMgr = isLikelyManager();
+    if (isPlayer || isMgr) {
+      reportBtn = `<div style="padding:5px 8px;border-top:1px solid var(--border);">
+        <a href="https://discord.com/channels/@me" onclick="openReportHint('${esc(p1?p1.display_name:'')}','${esc(p2?p2.display_name:'')}')"
+          style="display:block;text-align:center;font-size:10px;color:var(--accent);
+          background:rgba(79,126,240,.1);padding:4px 6px;border-radius:5px;">
+          Report on Discord →
+        </a>
+      </div>`;
+    }
+  }
+
   return `<div class="mc ${cls}" style="width:${cardW}px;animation-delay:${(Math.random()*.1).toFixed(2)}s">
     <div class="mc-hdr"><span class="mc-id">${lbl}</span>${badge}</div>
     ${pRow(m, p1, 1, matchById, pMap)}
     <div class="mc-sep"></div>
     ${pRow(m, p2, 2, matchById, pMap)}
+    ${reportBtn}
   </div>`;
+}
+
+function openReportHint(p1name, p2name) {
+  alert(`Use this command in Discord:\n\n/tournament log loser:<mention the loser>\n\nMatch: ${p1name} vs ${p2name}`);
 }
 
 function pRow(m, p, slot, matchById, pMap) {

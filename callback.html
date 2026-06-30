@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signing in… · Goldi Bot</title>
+<style>
+  :root{--bg:#0b0e14;--card:#181d28;--border:#252d3d;--text:#dde4f0;--muted:#6b7a96;--accent:#4f7ef0;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    height:100vh;display:flex;align-items:center;justify-content:center;}
+  .box{text-align:center;}
+  .spinner{
+    width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--accent);
+    border-radius:50%;margin:0 auto 16px;animation:spin .8s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+  h2{font-size:16px;font-weight:500;margin-bottom:6px;}
+  p{font-size:13px;color:var(--muted);}
+  .err{color:#f04f4f;}
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="spinner" id="spinner"></div>
+  <h2 id="title">Signing you in…</h2>
+  <p id="sub">Verifying with Discord</p>
+</div>
+
+<script src="auth.js"></script>
+<script>
+(async () => {
+  const ok = await GoldiAuth._handleCallback();
+  if (ok) {
+    document.getElementById('title').textContent = 'Signed in!';
+    document.getElementById('sub').textContent = 'Redirecting…';
+    document.getElementById('spinner').style.display = 'none';
+    const returnTo = sessionStorage.getItem('goldi_return_to') || 'index.html';
+    sessionStorage.removeItem('goldi_return_to');
+    setTimeout(() => { window.location.href = returnTo; }, 500);
+  } else {
+    document.getElementById('spinner').style.display = 'none';
+    document.getElementById('title').textContent = 'Sign in failed';
+    document.getElementById('title').className = 'err';
+    document.getElementById('sub').textContent = 'Please try again from the tournaments page.';
+  }
+})();
+</script>
+</body>
+</html>

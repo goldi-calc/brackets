@@ -1,0 +1,105 @@
+/* ──────────────────────────────────────────────────────────────
+   Goldi Bot · Discord OAuth (implicit flow, no backend required)
+   Include this script on every page that needs login state.
+   ────────────────────────────────────────────────────────────── */
+
+// ── CONFIG — fill these in ──────────────────────────────────────
+const DISCORD_CLIENT_ID = "YOUR_CLIENT_ID_HERE";
+// Must exactly match a Redirect URI registered in the Discord Dev Portal
+const DISCORD_REDIRECT_URI = window.location.origin + window.location.pathname.replace(/[^/]*$/, "") + "callback.html";
+const DISCORD_SCOPES = "identify guilds";
+
+// ── STORAGE KEYS ──────────────────────────────────────────────
+const LS_TOKEN = "goldi_discord_token";
+const LS_USER  = "goldi_discord_user";
+const LS_GUILDS = "goldi_discord_guilds";
+const LS_EXPIRY = "goldi_discord_expiry";
+
+// ── PUBLIC API ────────────────────────────────────────────────
+const GoldiAuth = {
+
+  isLoggedIn() {
+    const token = localStorage.getItem(LS_TOKEN);
+    const expiry = localStorage.getItem(LS_EXPIRY);
+    if (!token || !expiry) return false;
+    if (Date.now() > Number(expiry)) {
+      this.logout();
+      return false;
+    }
+    return true;
+  },
+
+  getUser() {
+    const raw = localStorage.getItem(LS_USER);
+    return raw ? JSON.parse(raw) : null;
+  },
+
+  getGuilds() {
+    const raw = localStorage.getItem(LS_GUILDS);
+    return raw ? JSON.parse(raw) : [];
+  },
+
+  getToken() {
+    return localStorage.getItem(LS_TOKEN);
+  },
+
+  login() {
+    const params = new URLSearchParams({
+      client_id: DISCORD_CLIENT_ID,
+      redirect_uri: DISCORD_REDIRECT_URI,
+      response_type: "token",
+      scope: DISCORD_SCOPES,
+      prompt: "none"
+    });
+    window.location.href = `https://discord.com/oauth2/authorize?${params}`;
+  },
+
+  logout() {
+    localStorage.removeItem(LS_TOKEN);
+    localStorage.removeItem(LS_USER);
+    localStorage.removeItem(LS_GUILDS);
+    localStorage.removeItem(LS_EXPIRY);
+  },
+
+  // Called only on callback.html after Discord redirects back
+  async _handleCallback() {
+    const hash = new URLSearchParams(window.location.hash.slice(1));
+    const token = hash.get("access_token");
+    const expiresIn = hash.get("expires_in");
+    if (!token) return false;
+
+    try {
+      const [userRes, guildsRes] = await Promise.all([
+        fetch("https://discord.com/api/users/@me", {
+          headers: { Authorization: `Bearer ${token}` }
+        }),
+        fetch("https://discord.com/api/users/@me/guilds", {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+      ]);
+      const user = await userRes.json();
+      const guilds = await guildsRes.json();
+
+      localStorage.setItem(LS_TOKEN, token);
+      localStorage.setItem(LS_USER, JSON.stringify(user));
+      localStorage.setItem(LS_GUILDS, JSON.stringify(guilds));
+      localStorage.setItem(LS_EXPIRY, String(Date.now() + Number(expiresIn) * 1000));
+      return true;
+    } catch (e) {
+      console.error("Discord auth failed:", e);
+      return false;
+    }
+  },
+
+  avatarUrl(user) {
+    if (!user) return null;
+    if (user.avatar) {
+      const ext = user.avatar.startsWith("a_") ? "gif" : "png";
+      return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${ext}?size=64`;
+    }
+    const idx = (BigInt(user.id) >> 22n) % 6n;
+    return `https://cdn.discordapp.com/embed/avatars/${idx}.png`;
+  }
+};
+
+window.GoldiAuth = GoldiAuth;

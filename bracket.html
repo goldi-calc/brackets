@@ -641,7 +641,7 @@ function renderTree(vm, pMap, matchById, canvas) {
   // Cards never overlap because SLOT_H >= CARD_H + gap always.
   // Later rounds: card sits at average Y of its two feeders.
   // If more players than fit in viewport: canvas just scrolls. That is fine.
-  const SLOT_H = CARD_H + 20; // fixed: card + 20px gap, always
+  const SLOT_H = CARD_H + 48; // fixed: card + 48px gap, always
 
   // Pre-compute centreY keyed by match id
   const centreY = {};

@@ -619,141 +619,142 @@ function getViewMatches(matches) {
 
 // ── TREE VIEW — Challonge style with connectors
 function renderTree(vm, pMap, matchById, canvas) {
-  const rounds  = [...new Set(vm.map(m=>m.round_id))].sort((a,b)=>a-b);
+  const rounds  = [...new Set(vm.map(m => m.round_id))].sort((a,b) => a - b);
   const byRound = {};
-  rounds.forEach(r => { byRound[r] = vm.filter(m=>m.round_id===r); });
+  rounds.forEach(r => { byRound[r] = vm.filter(m => m.round_id === r); });
 
-  const mob     = window.innerWidth <= 680;
-  const CARD_W  = mob ? 172 : 224;
-  const CARD_H  = 58;
-  const CON_W   = 48;
-  const LABEL_H = 26;
+  const mob    = window.innerWidth <= 680;
+  const CARD_W = mob ? 160 : 220;  // card width
+  const CARD_H = 56;               // card height (hdr + 2 rows + sep)
+  const CON_W  = 40;               // connector column width
+  const PAD_T  = 20;               // top padding before first card
 
-  // ── COMPACT VERTICAL LAYOUT ──────────────────────────────────
-  // Goal: bracket fits within the viewport height without huge gaps.
-  // Strategy: derive V_GAP dynamically from available canvas height
-  // so round-1 cards fill the space neatly, then each later round
-  // is centred between its two feeders (exactly like Challonge).
+  // ── CHALLONGE LAYOUT ALGORITHM ──────────────────────────────
+  // Challonge places round-1 cards with a fixed spacing S between
+  // every card centre. Round 2 card centres are midpoints of pairs.
+  // Round 3 centres are midpoints of round-2 pairs, etc.
+  // S is chosen so adjacent card edges never touch: S > CARD_H.
+  // We use S = CARD_H + 24 (comfortable gap between every card in R1).
 
+  const S = CARD_H + 24; // spacing between card centres in round 1
+
+  // Assign a leaf-slot index to every round-1 match.
+  // leaf index 0,1,2,3... maps to centreY = PAD_T + index * S + CARD_H/2
   const r1 = byRound[rounds[0]];
 
-  // ── CHALLONGE-ACCURATE LAYOUT ────────────────────────────────
-  // Key insight from Challonge screenshot:
-  //   • Round 1 cards come in PAIRS. Within a pair there is a small
-  //     gap (INNER_GAP) between the two cards.
-  //   • Between pairs there is a larger gap (PAIR_GAP).
-  //   • Round 2+ cards sit at the vertical midpoint of their pair.
-  //   • This creates the classic "no gap inside pair, big gap outside" look.
-
-  const INNER_GAP = 4;   // gap between the two cards in a pair (px)
-  const PAIR_GAP  = 36;  // gap between pairs (px)
-
-  // Height of one pair block = 2 cards + inner gap
-  const PAIR_H = CARD_H * 2 + INNER_GAP;
-  // Height of one full slot (pair + gap after it)
-  const SLOT_H = PAIR_H + PAIR_GAP;
-
-  // Pre-compute TOP-Y (not centre) for every match, keyed by match id
-  // We store the top edge of the card so positioning is exact.
-  const topY    = {};
+  // centreY[matchId] = vertical centre of that match card
   const centreY = {};
 
-  // Round 1: pairs packed together
   r1.forEach((m, i) => {
-    const pairIdx    = Math.floor(i / 2); // which pair
-    const posInPair  = i % 2;             // 0 = top card, 1 = bottom card
-    const pairTop    = pairIdx * SLOT_H;
-    const cardTop    = pairTop + posInPair * (CARD_H + INNER_GAP);
-    topY[m.id]    = cardTop;
-    centreY[m.id] = cardTop + CARD_H / 2;
+    centreY[m.id] = PAD_T + i * S + CARD_H / 2;
   });
 
-  // Later rounds: centre = average of the two feeder centres
+  // Each subsequent round: centre = average of two feeders
   for (let ri = 1; ri < rounds.length; ri++) {
-    const rMatches = byRound[rounds[ri]];
-    const prev     = byRound[rounds[ri - 1]];
-    rMatches.forEach((m, i) => {
+    const cur  = byRound[rounds[ri]];
+    const prev = byRound[rounds[ri - 1]];
+    cur.forEach((m, i) => {
       const f1 = prev[i * 2];
       const f2 = prev[i * 2 + 1];
-      let cy;
       if (f1 && f2) {
-        cy = (centreY[f1.id] + centreY[f2.id]) / 2;
+        centreY[m.id] = (centreY[f1.id] + centreY[f2.id]) / 2;
       } else if (f1) {
-        cy = centreY[f1.id];
+        centreY[m.id] = centreY[f1.id];
       } else {
-        // fallback: estimate based on position
-        cy = i * SLOT_H * Math.pow(2, ri) + CARD_H / 2;
+        centreY[m.id] = PAD_T + i * S * Math.pow(2, ri) + CARD_H / 2;
       }
-      centreY[m.id] = cy;
-      topY[m.id]    = cy - CARD_H / 2;
     });
   }
 
-  // Total height = number of pairs * SLOT_H (pairs always at least 1)
-  const numPairs = Math.ceil(r1.length / 2);
-  const totalH   = numPairs * SLOT_H + PAIR_GAP;
+  // Total height driven only by round 1
+  const totalH = PAD_T + r1.length * S + PAD_T;
 
-  let html = `<div class="bracket-inner" id="bracket-inner"><div class="b-stage" style="align-items:flex-start;">`;
+  // ── BUILD HTML ───────────────────────────────────────────────
+  let html = `<div class="bracket-inner" id="bracket-inner">`;
+  html += `<div style="display:flex;align-items:flex-start;min-width:max-content;">`;
 
   rounds.forEach((r, ri) => {
     const rMatches = byRound[r];
+    const lineCol  = view === 'L' ? 'var(--lose-line)' : 'var(--win-line)';
 
-    html += `<div class="b-round" style="width:${CARD_W}px;">`;
-    html += `<div class="b-round-lbl">${roundName(r, rounds.length, view)}</div>`;
-    html += `<div style="position:relative;height:${totalH}px;">`;
+    // ── Round column
+    html += `<div style="display:flex;flex-direction:column;">`;
 
-    rMatches.forEach((m) => {
-      const top = Math.round(topY[m.id] ?? 0);
-      html += `<div style="position:absolute;top:${top}px;left:0;right:0;">`;
+    // Label
+    html += `<div style="font-size:9px;font-weight:700;color:var(--muted);
+      text-transform:uppercase;letter-spacing:.08em;text-align:center;
+      width:${CARD_W}px;padding-bottom:8px;white-space:nowrap;">
+      ${roundName(r, rounds.length, view)}
+    </div>`;
+
+    // Cards container (absolutely positioned within fixed height)
+    html += `<div style="position:relative;width:${CARD_W}px;height:${totalH}px;">`;
+
+    rMatches.forEach(m => {
+      const top = Math.round(centreY[m.id] - CARD_H / 2);
+      html += `<div style="position:absolute;top:${top}px;left:0;width:${CARD_W}px;">`;
       html += buildMatchCard(m, pMap, matchById, CARD_W);
       html += `</div>`;
     });
 
-    html += `</div></div>`;
+    html += `</div>`; // cards container
+    html += `</div>`; // round column
 
-    // SVG connectors
+    // ── Connector column (SVG) between this round and next
     if (ri < rounds.length - 1) {
-      const nextR       = rounds[ri+1];
-      const nextMatches = byRound[nextR];
-      const lineCol     = view==='L' ? 'var(--lose-line)' : 'var(--win-line)';
+      const nextMatches = byRound[rounds[ri + 1]];
+      const svgH = totalH + 40;
 
       let paths = '';
-
       for (let i = 0; i < rMatches.length; i += 2) {
         const m1    = rMatches[i];
-        const m2    = rMatches[i+1];
-        const nextM = nextMatches[Math.floor(i/2)];
+        const m2    = rMatches[i + 1];
+        const nextM = nextMatches[Math.floor(i / 2)];
         if (!nextM) continue;
 
-        const y1    = Math.round(centreY[m1.id] ?? 0);
-        const y2    = m2 ? Math.round(centreY[m2.id] ?? 0) : y1;
+        const y1    = Math.round(centreY[m1.id]);
+        const y2    = m2 ? Math.round(centreY[m2.id]) : y1;
         const yMid  = Math.round((y1 + y2) / 2);
-        const yNext = Math.round(centreY[nextM.id] ?? 0);
+        const yNext = Math.round(centreY[nextM.id]);
 
-        const bothDone = m1.state==='complete' && (!m2 || m2.state==='complete');
-        const op       = bothDone ? '0.8' : '0.3';
-        const dash     = bothDone ? '' : 'stroke-dasharray="5,3"';
+        const done = m1.state === 'complete' && (!m2 || m2.state === 'complete');
+        const op   = done ? '0.85' : '0.35';
+        const dash = done ? '' : 'stroke-dasharray="5,3"';
+        const sw   = '1.5';
 
-        paths += `<line x1="0" y1="${y1}" x2="${CON_W/2}" y2="${y1}" stroke="${lineCol}" stroke-width="1.5" opacity="${op}" ${dash}/>`;
-        if (m2) paths += `<line x1="0" y1="${y2}" x2="${CON_W/2}" y2="${y2}" stroke="${lineCol}" stroke-width="1.5" opacity="${op}" ${dash}/>`;
-        paths += `<line x1="${CON_W/2}" y1="${y1}" x2="${CON_W/2}" y2="${y2}" stroke="${lineCol}" stroke-width="1.5" opacity="${op}" ${dash}/>`;
-        paths += `<line x1="${CON_W/2}" y1="${yMid}" x2="${CON_W}" y2="${yNext}" stroke="${lineCol}" stroke-width="1.5" opacity="${op}" ${dash}/>`;
+        // right stub from m1
+        paths += `<line x1="0" y1="${y1}" x2="${CON_W/2}" y2="${y1}"
+          stroke="${lineCol}" stroke-width="${sw}" opacity="${op}" ${dash}/>`;
+        // right stub from m2
+        if (m2) paths += `<line x1="0" y1="${y2}" x2="${CON_W/2}" y2="${y2}"
+          stroke="${lineCol}" stroke-width="${sw}" opacity="${op}" ${dash}/>`;
+        // vertical bracket
+        paths += `<line x1="${CON_W/2}" y1="${y1}" x2="${CON_W/2}" y2="${y2}"
+          stroke="${lineCol}" stroke-width="${sw}" opacity="${op}" ${dash}/>`;
+        // horizontal to next
+        paths += `<line x1="${CON_W/2}" y1="${yMid}" x2="${CON_W}" y2="${yNext}"
+          stroke="${lineCol}" stroke-width="${sw}" opacity="${op}" ${dash}/>`;
       }
 
-      // odd match
+      // odd match bye
       if (rMatches.length % 2 === 1) {
-        const lastM = rMatches[rMatches.length-1];
-        const nextM = nextMatches[Math.floor((rMatches.length-1)/2)];
+        const lastM = rMatches[rMatches.length - 1];
+        const nextM = nextMatches[Math.floor((rMatches.length - 1) / 2)];
         if (nextM) {
-          const y1    = centreY[lastM.id] ?? 0;
-          const yNext = centreY[nextM.id] ?? 0;
-          paths += `<line x1="0" y1="${y1}" x2="${CON_W}" y2="${yNext}" stroke="${lineCol}" stroke-width="1.5" opacity="0.25" stroke-dasharray="4,3"/>`;
+          const y1    = Math.round(centreY[lastM.id]);
+          const yNext = Math.round(centreY[nextM.id]);
+          paths += `<line x1="0" y1="${y1}" x2="${CON_W}" y2="${yNext}"
+            stroke="${lineCol}" stroke-width="1.5" opacity="0.25" stroke-dasharray="4,3"/>`;
         }
       }
 
-      html += `<div class="b-con" style="width:${CON_W}px;margin-top:${LABEL_H}px;">
-        <svg width="${CON_W}" height="${totalH}" style="overflow:visible;">${paths}</svg>
-      </div>`;
+      // Label spacer so SVG aligns below the round label
+      html += `<div style="display:flex;flex-direction:column;">`;
+      html += `<div style="height:25px;"></div>`; // matches label height
+      html += `<svg width="${CON_W}" height="${totalH}" style="overflow:visible;display:block;">
+        ${paths}
+      </svg>`;
+      html += `</div>`;
     }
   });
 

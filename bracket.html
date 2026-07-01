@@ -166,13 +166,14 @@ a{color:var(--accent);text-decoration:none;}
 .champ-name{font-size:18px;font-weight:700;margin-top:2px;}
 
 /* BRACKET CANVAS */
-.bracket-canvas{flex:1;overflow:auto;padding:20px 20px 48px;position:relative;}
+.bracket-canvas{flex:1;overflow:auto;padding:16px 16px 32px;position:relative;display:flex;flex-direction:column;}
 
 /* bracket inner — this is what we scale */
 .bracket-inner{
   transform-origin:top left;
   transition:transform .18s ease;
   display:inline-block;
+  margin:auto 0;
 }
 
 /* BRACKET TREE */
@@ -623,32 +624,30 @@ function renderTree(vm, pMap, matchById, canvas) {
   rounds.forEach(r => { byRound[r] = vm.filter(m=>m.round_id===r); });
 
   const mob     = window.innerWidth <= 680;
-  const CARD_W  = mob ? 180 : 240;
-  const CARD_H  = 62;
-  const CON_W   = 56;
-  const LABEL_H = 28;
-  const V_GAP   = 16; // fixed gap between cards — same every round
+  const CARD_W  = mob ? 172 : 224;
+  const CARD_H  = 58;
+  const CON_W   = 48;
+  const LABEL_H = 26;
 
-  // In Challonge the vertical centre of each card in round N is evenly spaced.
-  // The trick: round 1 has the densest packing. Each later round has cards
-  // centred between the two feeders from the previous round.
-  // We pre-compute Y centres for every match using the round-1 grid, then
-  // position everything relative to those centres.
+  // ── COMPACT VERTICAL LAYOUT ──────────────────────────────────
+  // Goal: bracket fits within the viewport height without huge gaps.
+  // Strategy: derive V_GAP dynamically from available canvas height
+  // so round-1 cards fill the space neatly, then each later round
+  // is centred between its two feeders (exactly like Challonge).
 
-  // Step 1: assign a "leaf index" to every round-1 match (0,1,2,3…)
-  // Each match in round N covers 2^(N-1) leaf slots.
-  const r1 = byRound[rounds[0]];
-  const SLOT_H = CARD_H + V_GAP; // height of one round-1 slot
+  const r1       = byRound[rounds[0]];
+  const canvasH  = document.getElementById('canvas').clientHeight || 600;
+  // Leave room for label and a little padding top/bottom
+  const usableH  = canvasH - LABEL_H - 32;
+  // Ideal slot height = usable / number of r1 matches, clamped to reasonable bounds
+  const idealSlot = Math.floor(usableH / Math.max(r1.length, 1));
+  const SLOT_H    = Math.min(Math.max(idealSlot, CARD_H + 6), CARD_H + 28);
 
-  // Build centre-Y for every match keyed by match id
+  // Pre-compute centreY for every match
   const centreY = {};
-
-  // Round 1: cards stacked with fixed gap
   r1.forEach((m, i) => {
     centreY[m.id] = i * SLOT_H + CARD_H / 2;
   });
-
-  // Subsequent rounds: centre = average of the two feeder centres
   for (let ri = 1; ri < rounds.length; ri++) {
     const rMatches = byRound[rounds[ri]];
     const prev     = byRound[rounds[ri-1]];
@@ -660,13 +659,13 @@ function renderTree(vm, pMap, matchById, canvas) {
       } else if (f1) {
         centreY[m.id] = centreY[f1.id];
       } else {
-        centreY[m.id] = i * SLOT_H * Math.pow(2, ri) + CARD_H / 2;
+        centreY[m.id] = i * SLOT_H + CARD_H / 2;
       }
     });
   }
 
-  // Total height = last round-1 card bottom + padding
-  const totalH = (r1.length - 1) * SLOT_H + CARD_H + 32;
+  // Total height — driven by r1 only so later rounds never push it down
+  const totalH = (r1.length - 1) * SLOT_H + CARD_H + 16;
 
   let html = `<div class="bracket-inner" id="bracket-inner"><div class="b-stage" style="align-items:flex-start;">`;
 
@@ -687,7 +686,7 @@ function renderTree(vm, pMap, matchById, canvas) {
 
     html += `</div></div>`;
 
-    // SVG connectors to next round
+    // SVG connectors
     if (ri < rounds.length - 1) {
       const nextR       = rounds[ri+1];
       const nextMatches = byRound[nextR];

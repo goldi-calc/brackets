@@ -637,39 +637,61 @@ function renderTree(vm, pMap, matchById, canvas) {
 
   const r1 = byRound[rounds[0]];
 
-  // SIMPLE FIXED LAYOUT — each round-1 slot is always SLOT_H tall.
-  // Cards never overlap because SLOT_H >= CARD_H + gap always.
-  // Later rounds: card sits at average Y of its two feeders.
-  // If more players than fit in viewport: canvas just scrolls. That is fine.
-  const SLOT_H = CARD_H + 48; // fixed: card + 48px gap, always
+  // ── CHALLONGE-ACCURATE LAYOUT ────────────────────────────────
+  // Key insight from Challonge screenshot:
+  //   • Round 1 cards come in PAIRS. Within a pair there is a small
+  //     gap (INNER_GAP) between the two cards.
+  //   • Between pairs there is a larger gap (PAIR_GAP).
+  //   • Round 2+ cards sit at the vertical midpoint of their pair.
+  //   • This creates the classic "no gap inside pair, big gap outside" look.
 
-  // Pre-compute centreY keyed by match id
+  const INNER_GAP = 4;   // gap between the two cards in a pair (px)
+  const PAIR_GAP  = 36;  // gap between pairs (px)
+
+  // Height of one pair block = 2 cards + inner gap
+  const PAIR_H = CARD_H * 2 + INNER_GAP;
+  // Height of one full slot (pair + gap after it)
+  const SLOT_H = PAIR_H + PAIR_GAP;
+
+  // Pre-compute TOP-Y (not centre) for every match, keyed by match id
+  // We store the top edge of the card so positioning is exact.
+  const topY    = {};
   const centreY = {};
 
-  // Round 1: evenly spaced from top
+  // Round 1: pairs packed together
   r1.forEach((m, i) => {
-    centreY[m.id] = SLOT_H * i + SLOT_H / 2;
+    const pairIdx    = Math.floor(i / 2); // which pair
+    const posInPair  = i % 2;             // 0 = top card, 1 = bottom card
+    const pairTop    = pairIdx * SLOT_H;
+    const cardTop    = pairTop + posInPair * (CARD_H + INNER_GAP);
+    topY[m.id]    = cardTop;
+    centreY[m.id] = cardTop + CARD_H / 2;
   });
 
-  // All later rounds: midpoint between feeders
+  // Later rounds: centre = average of the two feeder centres
   for (let ri = 1; ri < rounds.length; ri++) {
     const rMatches = byRound[rounds[ri]];
     const prev     = byRound[rounds[ri - 1]];
     rMatches.forEach((m, i) => {
       const f1 = prev[i * 2];
       const f2 = prev[i * 2 + 1];
+      let cy;
       if (f1 && f2) {
-        centreY[m.id] = (centreY[f1.id] + centreY[f2.id]) / 2;
+        cy = (centreY[f1.id] + centreY[f2.id]) / 2;
       } else if (f1) {
-        centreY[m.id] = centreY[f1.id];
+        cy = centreY[f1.id];
       } else {
-        centreY[m.id] = SLOT_H * i + SLOT_H / 2;
+        // fallback: estimate based on position
+        cy = i * SLOT_H * Math.pow(2, ri) + CARD_H / 2;
       }
+      centreY[m.id] = cy;
+      topY[m.id]    = cy - CARD_H / 2;
     });
   }
 
-  // Height = exactly enough for all r1 slots
-  const totalH = r1.length * SLOT_H;
+  // Total height = number of pairs * SLOT_H (pairs always at least 1)
+  const numPairs = Math.ceil(r1.length / 2);
+  const totalH   = numPairs * SLOT_H + PAIR_GAP;
 
   let html = `<div class="bracket-inner" id="bracket-inner"><div class="b-stage" style="align-items:flex-start;">`;
 
@@ -681,8 +703,7 @@ function renderTree(vm, pMap, matchById, canvas) {
     html += `<div style="position:relative;height:${totalH}px;">`;
 
     rMatches.forEach((m) => {
-      const cy  = centreY[m.id] ?? 0;
-      const top = cy - CARD_H / 2;
+      const top = Math.round(topY[m.id] ?? 0);
       html += `<div style="position:absolute;top:${top}px;left:0;right:0;">`;
       html += buildMatchCard(m, pMap, matchById, CARD_W);
       html += `</div>`;
@@ -704,10 +725,10 @@ function renderTree(vm, pMap, matchById, canvas) {
         const nextM = nextMatches[Math.floor(i/2)];
         if (!nextM) continue;
 
-        const y1    = centreY[m1.id] ?? 0;
-        const y2    = m2 ? (centreY[m2.id] ?? 0) : y1;
-        const yMid  = (y1 + y2) / 2;
-        const yNext = centreY[nextM.id] ?? 0;
+        const y1    = Math.round(centreY[m1.id] ?? 0);
+        const y2    = m2 ? Math.round(centreY[m2.id] ?? 0) : y1;
+        const yMid  = Math.round((y1 + y2) / 2);
+        const yNext = Math.round(centreY[nextM.id] ?? 0);
 
         const bothDone = m1.state==='complete' && (!m2 || m2.state==='complete');
         const op       = bothDone ? '0.8' : '0.3';

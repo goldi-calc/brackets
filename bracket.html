@@ -635,42 +635,41 @@ function renderTree(vm, pMap, matchById, canvas) {
   // so round-1 cards fill the space neatly, then each later round
   // is centred between its two feeders (exactly like Challonge).
 
-  const r1       = byRound[rounds[0]];
-  const canvasH  = document.getElementById('canvas').clientHeight || 600;
-  const usableH  = canvasH - LABEL_H - 32;
-  // Minimum slot = card + 8px gap, never compress below that.
-  // Ideal slot tries to fill the canvas, but never shrinks below minimum.
-  const MIN_SLOT  = CARD_H + 8;
-  const MAX_SLOT  = CARD_H + 32;
-  const idealSlot = Math.floor(usableH / Math.max(r1.length, 1));
-  // If there are too many players to fit, just use minimum and let it scroll
-  const SLOT_H    = Math.max(MIN_SLOT, Math.min(idealSlot, MAX_SLOT));
+  const r1 = byRound[rounds[0]];
 
-  // Pre-compute centreY for every match
+  // SIMPLE FIXED LAYOUT — each round-1 slot is always SLOT_H tall.
+  // Cards never overlap because SLOT_H >= CARD_H + gap always.
+  // Later rounds: card sits at average Y of its two feeders.
+  // If more players than fit in viewport: canvas just scrolls. That is fine.
+  const SLOT_H = CARD_H + 20; // fixed: card + 20px gap, always
+
+  // Pre-compute centreY keyed by match id
   const centreY = {};
+
+  // Round 1: evenly spaced from top
   r1.forEach((m, i) => {
-    // Centre of card = top of slot + half slot height
-    centreY[m.id] = i * SLOT_H + SLOT_H / 2;
+    centreY[m.id] = SLOT_H * i + SLOT_H / 2;
   });
+
+  // All later rounds: midpoint between feeders
   for (let ri = 1; ri < rounds.length; ri++) {
     const rMatches = byRound[rounds[ri]];
-    const prev     = byRound[rounds[ri-1]];
+    const prev     = byRound[rounds[ri - 1]];
     rMatches.forEach((m, i) => {
-      const f1 = prev[i*2];
-      const f2 = prev[i*2+1];
+      const f1 = prev[i * 2];
+      const f2 = prev[i * 2 + 1];
       if (f1 && f2) {
         centreY[m.id] = (centreY[f1.id] + centreY[f2.id]) / 2;
       } else if (f1) {
         centreY[m.id] = centreY[f1.id];
       } else {
-        centreY[m.id] = i * SLOT_H + CARD_H / 2;
+        centreY[m.id] = SLOT_H * i + SLOT_H / 2;
       }
     });
   }
 
-  // Total height — always driven by r1 slot count * slot height
-  // This ensures no overlap regardless of player count
-  const totalH = r1.length * SLOT_H + 8;
+  // Height = exactly enough for all r1 slots
+  const totalH = r1.length * SLOT_H;
 
   let html = `<div class="bracket-inner" id="bracket-inner"><div class="b-stage" style="align-items:flex-start;">`;
 

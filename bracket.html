@@ -637,16 +637,20 @@ function renderTree(vm, pMap, matchById, canvas) {
 
   const r1       = byRound[rounds[0]];
   const canvasH  = document.getElementById('canvas').clientHeight || 600;
-  // Leave room for label and a little padding top/bottom
   const usableH  = canvasH - LABEL_H - 32;
-  // Ideal slot height = usable / number of r1 matches, clamped to reasonable bounds
+  // Minimum slot = card + 8px gap, never compress below that.
+  // Ideal slot tries to fill the canvas, but never shrinks below minimum.
+  const MIN_SLOT  = CARD_H + 8;
+  const MAX_SLOT  = CARD_H + 32;
   const idealSlot = Math.floor(usableH / Math.max(r1.length, 1));
-  const SLOT_H    = Math.min(Math.max(idealSlot, CARD_H + 6), CARD_H + 28);
+  // If there are too many players to fit, just use minimum and let it scroll
+  const SLOT_H    = Math.max(MIN_SLOT, Math.min(idealSlot, MAX_SLOT));
 
   // Pre-compute centreY for every match
   const centreY = {};
   r1.forEach((m, i) => {
-    centreY[m.id] = i * SLOT_H + CARD_H / 2;
+    // Centre of card = top of slot + half slot height
+    centreY[m.id] = i * SLOT_H + SLOT_H / 2;
   });
   for (let ri = 1; ri < rounds.length; ri++) {
     const rMatches = byRound[rounds[ri]];
@@ -664,8 +668,9 @@ function renderTree(vm, pMap, matchById, canvas) {
     });
   }
 
-  // Total height — driven by r1 only so later rounds never push it down
-  const totalH = (r1.length - 1) * SLOT_H + CARD_H + 16;
+  // Total height — always driven by r1 slot count * slot height
+  // This ensures no overlap regardless of player count
+  const totalH = r1.length * SLOT_H + 8;
 
   let html = `<div class="bracket-inner" id="bracket-inner"><div class="b-stage" style="align-items:flex-start;">`;
 

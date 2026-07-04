@@ -1,6 +1,15 @@
 {
   "tournaments": [
     {
+      "slug": "_________e_au",
+      "name": "________e_au",
+      "server_name": "",
+      "tournament_type": "double elimination",
+      "status": "ongoing",
+      "player_count": 32,
+      "updated_at": "2026-07-04T13:15:48.826305+00:00"
+    },
+    {
       "slug": "goldi_hub_instant_1782826386",
       "name": "instant_1782826386",
       "server_name": "Goldi_Hub",

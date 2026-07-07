@@ -6,7 +6,7 @@
   "tournament_type": "single elimination",
   "status": "ongoing",
   "current_round": 1,
-  "updated_at": "2026-07-07T14:29:15.924428+00:00",
+  "updated_at": "2026-07-07T14:40:58.971737+00:00",
   "participants": [
     {
       "id": 671,
@@ -47,9 +47,9 @@
       "seed": 4,
       "display_name": "finesse",
       "external_id": "1114417385898778684",
-      "losses": 0,
-      "eliminated": 0,
-      "eliminated_round": null,
+      "losses": 1,
+      "eliminated": 1,
+      "eliminated_round": 2,
       "created_at": "2026-07-07T14:03:23.480763+00:00"
     },
     {
@@ -190,10 +190,10 @@
       "match_order": 1,
       "player1_participant_id": 674,
       "player2_participant_id": 672,
-      "winner_participant_id": null,
-      "loser_participant_id": null,
-      "state": "open",
-      "scores_csv": null,
+      "winner_participant_id": 672,
+      "loser_participant_id": 674,
+      "state": "complete",
+      "scores_csv": "0-1",
       "player1_prereq_match_id": 808,
       "player2_prereq_match_id": 809,
       "next_match_win_id": 814,
@@ -201,7 +201,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-07-07T14:03:23.490495+00:00",
-      "updated_at": "2026-07-07T14:21:09.894490+00:00"
+      "updated_at": "2026-07-07T14:40:58.955590+00:00"
     },
     {
       "id": 813,
@@ -230,7 +230,7 @@
       "bracket": "W",
       "round_id": 3,
       "match_order": 1,
-      "player1_participant_id": null,
+      "player1_participant_id": 672,
       "player2_participant_id": null,
       "winner_participant_id": null,
       "loser_participant_id": null,
@@ -243,7 +243,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-07-07T14:03:23.490765+00:00",
-      "updated_at": "2026-07-07T14:03:23.490765+00:00"
+      "updated_at": "2026-07-07T14:40:58.955990+00:00"
     }
   ]
 }

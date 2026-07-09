@@ -1,6 +1,15 @@
 {
   "tournaments": [
     {
+      "slug": "pokemon_battle",
+      "name": "Battle",
+      "server_name": "Pokemon",
+      "tournament_type": "single elimination",
+      "status": "ongoing",
+      "player_count": 2,
+      "updated_at": "2026-07-09T14:05:21.143411+00:00"
+    },
+    {
       "slug": "goldi_hub_instant_1783600884",
       "name": "instant_1783600884",
       "server_name": "Goldi_Hub",

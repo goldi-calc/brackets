@@ -6,7 +6,7 @@
   "tournament_type": "single elimination",
   "status": "ongoing",
   "current_round": 1,
-  "updated_at": "2026-07-10T14:55:03.567890+00:00",
+  "updated_at": "2026-07-10T14:58:59.897195+00:00",
   "participants": [
     {
       "id": 696,
@@ -80,9 +80,9 @@
       "seed": 7,
       "display_name": "Gone. ( Dw just for a bit)",
       "external_id": "981969143358160946",
-      "losses": 0,
-      "eliminated": 0,
-      "eliminated_round": null,
+      "losses": 1,
+      "eliminated": 1,
+      "eliminated_round": 3,
       "created_at": "2026-07-10T14:21:07.227379+00:00"
     },
     {
@@ -222,10 +222,10 @@
       "match_order": 1,
       "player1_participant_id": 697,
       "player2_participant_id": 702,
-      "winner_participant_id": null,
-      "loser_participant_id": null,
-      "state": "open",
-      "scores_csv": null,
+      "winner_participant_id": 697,
+      "loser_participant_id": 702,
+      "state": "complete",
+      "scores_csv": "1-0",
       "player1_prereq_match_id": 830,
       "player2_prereq_match_id": 831,
       "next_match_win_id": 836,
@@ -233,7 +233,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-07-10T14:21:07.240888+00:00",
-      "updated_at": "2026-07-10T14:51:45.357668+00:00"
+      "updated_at": "2026-07-10T14:58:59.876535+00:00"
     },
     {
       "id": 835,
@@ -262,7 +262,7 @@
       "bracket": "W",
       "round_id": 4,
       "match_order": 1,
-      "player1_participant_id": null,
+      "player1_participant_id": 697,
       "player2_participant_id": 699,
       "winner_participant_id": null,
       "loser_participant_id": null,
@@ -275,7 +275,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-07-10T14:21:07.240965+00:00",
-      "updated_at": "2026-07-10T14:55:03.549945+00:00"
+      "updated_at": "2026-07-10T14:58:59.877234+00:00"
     }
   ]
 }

@@ -6,7 +6,7 @@
   "tournament_type": "single elimination",
   "status": "ongoing",
   "current_round": 1,
-  "updated_at": "2026-07-11T14:59:13.920624+00:00",
+  "updated_at": "2026-07-11T15:19:06.700229+00:00",
   "participants": [
     {
       "id": 711,
@@ -58,9 +58,9 @@
       "seed": 5,
       "display_name": "Devdas",
       "external_id": "1283055412828045465",
-      "losses": 0,
-      "eliminated": 0,
-      "eliminated_round": null,
+      "losses": 1,
+      "eliminated": 1,
+      "eliminated_round": 2,
       "created_at": "2026-07-11T14:44:34.991234+00:00"
     },
     {
@@ -126,10 +126,10 @@
       "match_order": 1,
       "player1_participant_id": 711,
       "player2_participant_id": 715,
-      "winner_participant_id": null,
-      "loser_participant_id": null,
-      "state": "open",
-      "scores_csv": null,
+      "winner_participant_id": 711,
+      "loser_participant_id": 715,
+      "state": "complete",
+      "scores_csv": "1-0",
       "player1_prereq_match_id": null,
       "player2_prereq_match_id": 842,
       "next_match_win_id": 846,
@@ -137,7 +137,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-07-11T14:44:35.010352+00:00",
-      "updated_at": "2026-07-11T14:58:45.578477+00:00"
+      "updated_at": "2026-07-11T15:19:06.666143+00:00"
     },
     {
       "id": 845,
@@ -166,7 +166,7 @@
       "bracket": "W",
       "round_id": 3,
       "match_order": 1,
-      "player1_participant_id": null,
+      "player1_participant_id": 711,
       "player2_participant_id": null,
       "winner_participant_id": null,
       "loser_participant_id": null,
@@ -179,7 +179,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-07-11T14:44:35.011110+00:00",
-      "updated_at": "2026-07-11T14:44:35.011110+00:00"
+      "updated_at": "2026-07-11T15:19:06.666706+00:00"
     }
   ]
 }

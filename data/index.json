@@ -1,6 +1,15 @@
 {
   "tournaments": [
     {
+      "slug": "p2_world_pokemon",
+      "name": "WORLD_pokemon",
+      "server_name": "P2",
+      "tournament_type": "single elimination",
+      "status": "ongoing",
+      "player_count": 6,
+      "updated_at": "2026-07-12T10:47:29.449038+00:00"
+    },
+    {
       "slug": "goldi_hub_instant_1783781074",
       "name": "instant_1783781074",
       "server_name": "Goldi_Hub",
@@ -8,15 +17,6 @@
       "status": "ongoing",
       "player_count": 6,
       "updated_at": "2026-07-11T15:30:04.872027+00:00"
-    },
-    {
-      "slug": "p2_world_pokemon",
-      "name": "WORLD_pokemon",
-      "server_name": "P2",
-      "tournament_type": "single elimination",
-      "status": "ongoing",
-      "player_count": 6,
-      "updated_at": "2026-07-11T10:32:43.955535+00:00"
     },
     {
       "slug": "goldi_hub_instant_1783693267",

@@ -6,7 +6,7 @@
   "tournament_type": "single elimination",
   "status": "ongoing",
   "current_round": 1,
-  "updated_at": "2026-07-15T14:19:55.559797+00:00",
+  "updated_at": "2026-07-15T14:22:15.632128+00:00",
   "participants": [
     {
       "id": 719,
@@ -58,9 +58,9 @@
       "seed": 5,
       "display_name": "Belisarius",
       "external_id": "841638101213511741",
-      "losses": 0,
-      "eliminated": 0,
-      "eliminated_round": null,
+      "losses": 1,
+      "eliminated": 1,
+      "eliminated_round": 1,
       "created_at": "2026-07-15T14:13:59.779793+00:00"
     },
     {
@@ -127,10 +127,10 @@
       "match_order": 2,
       "player1_participant_id": 723,
       "player2_participant_id": 722,
-      "winner_participant_id": null,
-      "loser_participant_id": null,
-      "state": "open",
-      "scores_csv": null,
+      "winner_participant_id": 722,
+      "loser_participant_id": 723,
+      "state": "complete",
+      "scores_csv": "0-1",
       "player1_prereq_match_id": null,
       "player2_prereq_match_id": null,
       "next_match_win_id": 852,
@@ -138,7 +138,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-07-15T14:13:59.780387+00:00",
-      "updated_at": "2026-07-15T14:13:59.780418+00:00"
+      "updated_at": "2026-07-15T14:22:15.613927+00:00"
     },
     {
       "id": 850,
@@ -189,7 +189,7 @@
       "round_id": 2,
       "match_order": 1,
       "player1_participant_id": 725,
-      "player2_participant_id": null,
+      "player2_participant_id": 722,
       "winner_participant_id": null,
       "loser_participant_id": null,
       "state": "open",
@@ -201,7 +201,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-07-15T14:13:59.780418+00:00",
-      "updated_at": "2026-07-15T14:19:55.538757+00:00"
+      "updated_at": "2026-07-15T14:22:15.614104+00:00"
     },
     {
       "id": 853,

@@ -6,7 +6,7 @@
   "tournament_type": "single elimination",
   "status": "ongoing",
   "current_round": 1,
-  "updated_at": "2026-07-16T14:29:17.049654+00:00",
+  "updated_at": "2026-07-16T14:29:42.620788+00:00",
   "participants": [
     {
       "id": 727,
@@ -124,9 +124,9 @@
       "seed": 11,
       "display_name": "Swati\u2764\ufe0f",
       "external_id": "1520344188028453010",
-      "losses": 0,
-      "eliminated": 0,
-      "eliminated_round": null,
+      "losses": 1,
+      "eliminated": 1,
+      "eliminated_round": 1,
       "created_at": "2026-07-16T14:13:55.651991+00:00"
     },
     {
@@ -246,10 +246,10 @@
       "match_order": 4,
       "player1_participant_id": 737,
       "player2_participant_id": 739,
-      "winner_participant_id": null,
-      "loser_participant_id": null,
-      "state": "open",
-      "scores_csv": null,
+      "winner_participant_id": 739,
+      "loser_participant_id": 737,
+      "state": "complete",
+      "scores_csv": "0-1",
       "player1_prereq_match_id": null,
       "player2_prereq_match_id": null,
       "next_match_win_id": 863,
@@ -257,7 +257,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-07-16T14:13:55.652709+00:00",
-      "updated_at": "2026-07-16T14:13:55.652782+00:00"
+      "updated_at": "2026-07-16T14:29:42.592899+00:00"
     },
     {
       "id": 859,
@@ -349,7 +349,7 @@
       "bracket": "W",
       "round_id": 2,
       "match_order": 2,
-      "player1_participant_id": null,
+      "player1_participant_id": 739,
       "player2_participant_id": null,
       "winner_participant_id": null,
       "loser_participant_id": null,
@@ -362,7 +362,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-07-16T14:13:55.652782+00:00",
-      "updated_at": "2026-07-16T14:13:55.652820+00:00"
+      "updated_at": "2026-07-16T14:29:42.593063+00:00"
     },
     {
       "id": 864,

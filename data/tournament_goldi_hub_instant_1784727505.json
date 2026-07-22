@@ -6,7 +6,7 @@
   "tournament_type": "single elimination",
   "status": "ongoing",
   "current_round": 1,
-  "updated_at": "2026-07-22T13:54:58.325556+00:00",
+  "updated_at": "2026-07-22T14:00:44.789672+00:00",
   "participants": [
     {
       "id": 750,
@@ -36,9 +36,9 @@
       "seed": 3,
       "display_name": "HFCxRUSHGOD",
       "external_id": "487961851146141699",
-      "losses": 0,
-      "eliminated": 0,
-      "eliminated_round": null,
+      "losses": 1,
+      "eliminated": 1,
+      "eliminated_round": 1,
       "created_at": "2026-07-22T13:38:25.259844+00:00"
     },
     {
@@ -139,10 +139,10 @@
       "match_order": 1,
       "player1_participant_id": 750,
       "player2_participant_id": 752,
-      "winner_participant_id": null,
-      "loser_participant_id": null,
-      "state": "open",
-      "scores_csv": null,
+      "winner_participant_id": 750,
+      "loser_participant_id": 752,
+      "state": "complete",
+      "scores_csv": "1-0",
       "player1_prereq_match_id": null,
       "player2_prereq_match_id": null,
       "next_match_win_id": 881,
@@ -150,7 +150,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-07-22T13:38:25.260995+00:00",
-      "updated_at": "2026-07-22T13:38:25.261211+00:00"
+      "updated_at": "2026-07-22T14:00:44.778108+00:00"
     },
     {
       "id": 876,
@@ -263,7 +263,7 @@
       "bracket": "W",
       "round_id": 2,
       "match_order": 4,
-      "player1_participant_id": null,
+      "player1_participant_id": 750,
       "player2_participant_id": null,
       "winner_participant_id": null,
       "loser_participant_id": null,
@@ -276,7 +276,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-07-22T13:38:25.261211+00:00",
-      "updated_at": "2026-07-22T13:38:25.261241+00:00"
+      "updated_at": "2026-07-22T14:00:44.778298+00:00"
     },
     {
       "id": 882,

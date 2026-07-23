@@ -6,7 +6,7 @@
   "tournament_type": "single elimination",
   "status": "ongoing",
   "current_round": 1,
-  "updated_at": "2026-07-23T13:29:20.028826+00:00",
+  "updated_at": "2026-07-23T13:32:46.955201+00:00",
   "participants": [
     {
       "id": 761,
@@ -113,9 +113,9 @@
       "seed": 10,
       "display_name": "vxnish",
       "external_id": "1483788333220892694",
-      "losses": 0,
-      "eliminated": 0,
-      "eliminated_round": null,
+      "losses": 1,
+      "eliminated": 1,
+      "eliminated_round": 1,
       "created_at": "2026-07-23T13:13:59.329793+00:00"
     }
   ],
@@ -128,10 +128,10 @@
       "match_order": 1,
       "player1_participant_id": 761,
       "player2_participant_id": 770,
-      "winner_participant_id": null,
-      "loser_participant_id": null,
-      "state": "open",
-      "scores_csv": null,
+      "winner_participant_id": 761,
+      "loser_participant_id": 770,
+      "state": "complete",
+      "scores_csv": "1-0",
       "player1_prereq_match_id": null,
       "player2_prereq_match_id": null,
       "next_match_win_id": 888,
@@ -139,7 +139,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-07-23T13:13:59.331553+00:00",
-      "updated_at": "2026-07-23T13:13:59.331952+00:00"
+      "updated_at": "2026-07-23T13:32:46.941538+00:00"
     },
     {
       "id": 886,
@@ -190,7 +190,7 @@
       "round_id": 2,
       "match_order": 2,
       "player1_participant_id": 769,
-      "player2_participant_id": null,
+      "player2_participant_id": 761,
       "winner_participant_id": null,
       "loser_participant_id": null,
       "state": "open",
@@ -202,7 +202,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-07-23T13:13:59.331952+00:00",
-      "updated_at": "2026-07-23T13:13:59.332300+00:00"
+      "updated_at": "2026-07-23T13:32:46.944891+00:00"
     },
     {
       "id": 889,

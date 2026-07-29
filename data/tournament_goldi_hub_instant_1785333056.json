@@ -6,7 +6,7 @@
   "tournament_type": "single elimination",
   "status": "ongoing",
   "current_round": 1,
-  "updated_at": "2026-07-29T14:01:48.349712+00:00",
+  "updated_at": "2026-07-29T14:03:51.180398+00:00",
   "participants": [
     {
       "id": 781,
@@ -58,9 +58,9 @@
       "seed": 5,
       "display_name": "Vatsal",
       "external_id": "876078820267003966",
-      "losses": 0,
-      "eliminated": 0,
-      "eliminated_round": null,
+      "losses": 1,
+      "eliminated": 1,
+      "eliminated_round": 1,
       "created_at": "2026-07-29T13:50:56.788758+00:00"
     }
   ],
@@ -73,10 +73,10 @@
       "match_order": 1,
       "player1_participant_id": 785,
       "player2_participant_id": 784,
-      "winner_participant_id": null,
-      "loser_participant_id": null,
-      "state": "open",
-      "scores_csv": null,
+      "winner_participant_id": 784,
+      "loser_participant_id": 785,
+      "state": "complete",
+      "scores_csv": "0-1",
       "player1_prereq_match_id": null,
       "player2_prereq_match_id": null,
       "next_match_win_id": 903,
@@ -84,7 +84,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-07-29T13:50:56.789325+00:00",
-      "updated_at": "2026-07-29T13:50:56.789412+00:00"
+      "updated_at": "2026-07-29T14:03:51.161664+00:00"
     },
     {
       "id": 903,
@@ -93,7 +93,7 @@
       "round_id": 2,
       "match_order": 1,
       "player1_participant_id": 783,
-      "player2_participant_id": null,
+      "player2_participant_id": 784,
       "winner_participant_id": null,
       "loser_participant_id": null,
       "state": "open",
@@ -105,7 +105,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-07-29T13:50:56.789412+00:00",
-      "updated_at": "2026-07-29T13:50:56.789459+00:00"
+      "updated_at": "2026-07-29T14:03:51.161840+00:00"
     },
     {
       "id": 904,

@@ -6,7 +6,7 @@
   "tournament_type": "single elimination",
   "status": "ongoing",
   "current_round": 1,
-  "updated_at": "2026-08-01T14:18:01.677106+00:00",
+  "updated_at": "2026-08-01T14:18:44.856849+00:00",
   "participants": [
     {
       "id": 792,
@@ -58,9 +58,9 @@
       "seed": 5,
       "display_name": "shalzar",
       "external_id": "841638101213511741",
-      "losses": 0,
-      "eliminated": 0,
-      "eliminated_round": null,
+      "losses": 1,
+      "eliminated": 1,
+      "eliminated_round": 1,
       "created_at": "2026-08-01T14:07:51.477096+00:00"
     },
     {
@@ -84,10 +84,10 @@
       "match_order": 1,
       "player1_participant_id": 796,
       "player2_participant_id": 795,
-      "winner_participant_id": null,
-      "loser_participant_id": null,
-      "state": "open",
-      "scores_csv": null,
+      "winner_participant_id": 795,
+      "loser_participant_id": 796,
+      "state": "complete",
+      "scores_csv": "0-1",
       "player1_prereq_match_id": null,
       "player2_prereq_match_id": null,
       "next_match_win_id": 914,
@@ -95,7 +95,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-08-01T14:07:51.477977+00:00",
-      "updated_at": "2026-08-01T14:07:51.478417+00:00"
+      "updated_at": "2026-08-01T14:18:44.845848+00:00"
     },
     {
       "id": 912,
@@ -145,7 +145,7 @@
       "bracket": "W",
       "round_id": 2,
       "match_order": 2,
-      "player1_participant_id": null,
+      "player1_participant_id": 795,
       "player2_participant_id": null,
       "winner_participant_id": null,
       "loser_participant_id": null,
@@ -158,7 +158,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-08-01T14:07:51.478417+00:00",
-      "updated_at": "2026-08-01T14:07:51.478457+00:00"
+      "updated_at": "2026-08-01T14:18:44.846102+00:00"
     },
     {
       "id": 915,

@@ -6,7 +6,7 @@
   "tournament_type": "single elimination",
   "status": "ongoing",
   "current_round": 1,
-  "updated_at": "2026-08-15T15:07:07.390662+00:00",
+  "updated_at": "2026-08-15T15:12:02.261245+00:00",
   "participants": [
     {
       "id": 764,
@@ -14,9 +14,9 @@
       "seed": 1,
       "display_name": "nab",
       "external_id": "1381417972408516618",
-      "losses": 0,
-      "eliminated": 0,
-      "eliminated_round": null,
+      "losses": 1,
+      "eliminated": 1,
+      "eliminated_round": 3,
       "created_at": "2026-08-15T14:11:28.971806+00:00"
     },
     {
@@ -339,10 +339,10 @@
       "match_order": 2,
       "player1_participant_id": 764,
       "player2_participant_id": 769,
-      "winner_participant_id": null,
-      "loser_participant_id": null,
-      "state": "open",
-      "scores_csv": null,
+      "winner_participant_id": 769,
+      "loser_participant_id": 764,
+      "state": "complete",
+      "scores_csv": "0-1",
       "player1_prereq_match_id": 891,
       "player2_prereq_match_id": 892,
       "next_match_win_id": 895,
@@ -350,7 +350,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-08-15T14:11:28.981462+00:00",
-      "updated_at": "2026-08-15T14:24:03.184713+00:00"
+      "updated_at": "2026-08-15T15:12:02.237656+00:00"
     },
     {
       "id": 895,
@@ -359,7 +359,7 @@
       "round_id": 4,
       "match_order": 1,
       "player1_participant_id": null,
-      "player2_participant_id": null,
+      "player2_participant_id": 769,
       "winner_participant_id": null,
       "loser_participant_id": null,
       "state": "open",
@@ -371,7 +371,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-08-15T14:11:28.981564+00:00",
-      "updated_at": "2026-08-15T14:11:28.981564+00:00"
+      "updated_at": "2026-08-15T15:12:02.238073+00:00"
     }
   ]
 }

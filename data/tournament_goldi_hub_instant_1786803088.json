@@ -6,7 +6,7 @@
   "tournament_type": "single elimination",
   "status": "ongoing",
   "current_round": 1,
-  "updated_at": "2026-08-15T14:12:30.899403+00:00",
+  "updated_at": "2026-08-15T14:24:03.207640+00:00",
   "participants": [
     {
       "id": 764,
@@ -91,9 +91,9 @@
       "seed": 8,
       "display_name": "VENOM",
       "external_id": "1417162938913001624",
-      "losses": 0,
-      "eliminated": 0,
-      "eliminated_round": null,
+      "losses": 1,
+      "eliminated": 1,
+      "eliminated_round": 2,
       "created_at": "2026-08-15T14:11:28.971806+00:00"
     },
     {
@@ -297,10 +297,10 @@
       "match_order": 4,
       "player1_participant_id": 771,
       "player2_participant_id": 769,
-      "winner_participant_id": null,
-      "loser_participant_id": null,
-      "state": "open",
-      "scores_csv": null,
+      "winner_participant_id": 769,
+      "loser_participant_id": 771,
+      "state": "complete",
+      "scores_csv": "0-1",
       "player1_prereq_match_id": null,
       "player2_prereq_match_id": null,
       "next_match_win_id": 894,
@@ -308,7 +308,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-08-15T14:11:28.981407+00:00",
-      "updated_at": "2026-08-15T14:11:28.981462+00:00"
+      "updated_at": "2026-08-15T14:24:03.184058+00:00"
     },
     {
       "id": 893,
@@ -338,7 +338,7 @@
       "round_id": 3,
       "match_order": 2,
       "player1_participant_id": 764,
-      "player2_participant_id": null,
+      "player2_participant_id": 769,
       "winner_participant_id": null,
       "loser_participant_id": null,
       "state": "open",
@@ -350,7 +350,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-08-15T14:11:28.981462+00:00",
-      "updated_at": "2026-08-15T14:12:30.881244+00:00"
+      "updated_at": "2026-08-15T14:24:03.184713+00:00"
     },
     {
       "id": 895,

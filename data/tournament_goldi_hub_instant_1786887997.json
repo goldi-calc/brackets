@@ -6,7 +6,7 @@
   "tournament_type": "single elimination",
   "status": "ongoing",
   "current_round": 1,
-  "updated_at": "2026-08-16T14:08:55.576711+00:00",
+  "updated_at": "2026-08-16T14:11:04.985228+00:00",
   "participants": [
     {
       "id": 776,
@@ -91,9 +91,9 @@
       "seed": 8,
       "display_name": "Aishwarya Rai",
       "external_id": "1283055412828045465",
-      "losses": 0,
-      "eliminated": 0,
-      "eliminated_round": null,
+      "losses": 1,
+      "eliminated": 1,
+      "eliminated_round": 1,
       "created_at": "2026-08-16T13:46:37.605733+00:00"
     }
   ],
@@ -169,10 +169,10 @@
       "match_order": 4,
       "player1_participant_id": 776,
       "player2_participant_id": 783,
-      "winner_participant_id": null,
-      "loser_participant_id": null,
-      "state": "open",
-      "scores_csv": null,
+      "winner_participant_id": 776,
+      "loser_participant_id": 783,
+      "state": "complete",
+      "scores_csv": "1-0",
       "player1_prereq_match_id": null,
       "player2_prereq_match_id": null,
       "next_match_win_id": 901,
@@ -180,7 +180,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-08-16T13:46:37.612436+00:00",
-      "updated_at": "2026-08-16T13:46:37.612574+00:00"
+      "updated_at": "2026-08-16T14:11:04.851592+00:00"
     },
     {
       "id": 900,
@@ -210,7 +210,7 @@
       "round_id": 2,
       "match_order": 2,
       "player1_participant_id": 777,
-      "player2_participant_id": null,
+      "player2_participant_id": 776,
       "winner_participant_id": null,
       "loser_participant_id": null,
       "state": "open",
@@ -222,7 +222,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-08-16T13:46:37.612574+00:00",
-      "updated_at": "2026-08-16T14:06:09.061329+00:00"
+      "updated_at": "2026-08-16T14:11:04.854815+00:00"
     },
     {
       "id": 902,

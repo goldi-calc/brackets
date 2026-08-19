@@ -6,7 +6,7 @@
   "tournament_type": "single elimination",
   "status": "ongoing",
   "current_round": 1,
-  "updated_at": "2026-08-19T15:09:40.174658+00:00",
+  "updated_at": "2026-08-19T15:11:21.337993+00:00",
   "participants": [
     {
       "id": 801,
@@ -25,9 +25,9 @@
       "seed": 2,
       "display_name": "Maddie",
       "external_id": "1478720092500918414",
-      "losses": 0,
-      "eliminated": 0,
-      "eliminated_round": null,
+      "losses": 1,
+      "eliminated": 1,
+      "eliminated_round": 2,
       "created_at": "2026-08-19T14:07:06.232446+00:00"
     },
     {
@@ -211,10 +211,10 @@
       "match_order": 2,
       "player1_participant_id": 802,
       "player2_participant_id": 801,
-      "winner_participant_id": null,
-      "loser_participant_id": null,
-      "state": "open",
-      "scores_csv": null,
+      "winner_participant_id": 801,
+      "loser_participant_id": 802,
+      "state": "complete",
+      "scores_csv": "0-1",
       "player1_prereq_match_id": 919,
       "player2_prereq_match_id": 920,
       "next_match_win_id": 923,
@@ -222,7 +222,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-08-19T14:07:06.261838+00:00",
-      "updated_at": "2026-08-19T14:54:41.789398+00:00"
+      "updated_at": "2026-08-19T15:11:21.318480+00:00"
     },
     {
       "id": 923,
@@ -231,7 +231,7 @@
       "round_id": 3,
       "match_order": 1,
       "player1_participant_id": 804,
-      "player2_participant_id": null,
+      "player2_participant_id": 801,
       "winner_participant_id": null,
       "loser_participant_id": null,
       "state": "open",
@@ -243,7 +243,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-08-19T14:07:06.261897+00:00",
-      "updated_at": "2026-08-19T15:09:40.147762+00:00"
+      "updated_at": "2026-08-19T15:11:21.318874+00:00"
     }
   ]
 }

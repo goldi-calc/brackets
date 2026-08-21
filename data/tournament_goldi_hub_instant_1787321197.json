@@ -6,7 +6,7 @@
   "tournament_type": "single elimination",
   "status": "ongoing",
   "current_round": 1,
-  "updated_at": "2026-08-21T15:31:09.521062+00:00",
+  "updated_at": "2026-08-21T15:31:37.799961+00:00",
   "participants": [
     {
       "id": 816,
@@ -102,9 +102,9 @@
       "seed": 9,
       "display_name": "Sato Ry\u016b",
       "external_id": "799794551018618880",
-      "losses": 0,
-      "eliminated": 0,
-      "eliminated_round": null,
+      "losses": 1,
+      "eliminated": 1,
+      "eliminated_round": 3,
       "created_at": "2026-08-21T14:06:37.031886+00:00"
     },
     {
@@ -275,10 +275,10 @@
       "match_order": 2,
       "player1_participant_id": 824,
       "player2_participant_id": 821,
-      "winner_participant_id": null,
-      "loser_participant_id": null,
-      "state": "open",
-      "scores_csv": null,
+      "winner_participant_id": 821,
+      "loser_participant_id": 824,
+      "state": "complete",
+      "scores_csv": "0-1",
       "player1_prereq_match_id": 934,
       "player2_prereq_match_id": 935,
       "next_match_win_id": 938,
@@ -286,7 +286,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-08-21T14:06:37.046432+00:00",
-      "updated_at": "2026-08-21T14:49:59.716050+00:00"
+      "updated_at": "2026-08-21T15:31:37.775100+00:00"
     },
     {
       "id": 938,
@@ -295,7 +295,7 @@
       "round_id": 4,
       "match_order": 1,
       "player1_participant_id": 822,
-      "player2_participant_id": null,
+      "player2_participant_id": 821,
       "winner_participant_id": null,
       "loser_participant_id": null,
       "state": "open",
@@ -307,7 +307,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-08-21T14:06:37.046473+00:00",
-      "updated_at": "2026-08-21T15:31:09.488411+00:00"
+      "updated_at": "2026-08-21T15:31:37.775495+00:00"
     }
   ]
 }

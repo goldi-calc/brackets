@@ -1,6 +1,15 @@
 {
   "tournaments": [
     {
+      "slug": "goldi_hub_instant_1787666838",
+      "name": "instant_1787666838",
+      "server_name": "Goldi_Hub",
+      "tournament_type": "single elimination",
+      "status": "ongoing",
+      "player_count": 9,
+      "updated_at": "2026-08-25T14:20:01.599519+00:00"
+    },
+    {
       "slug": "goldi_hub_instant_1787579174",
       "name": "instant_1787579174",
       "server_name": "Goldi_Hub",

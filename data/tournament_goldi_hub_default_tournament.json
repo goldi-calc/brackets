@@ -6,7 +6,7 @@
   "tournament_type": "single elimination",
   "status": "ongoing",
   "current_round": 1,
-  "updated_at": "2026-09-19T18:23:48.173595+00:00",
+  "updated_at": "2026-09-20T18:39:18.262964+00:00",
   "participants": [
     {
       "id": 986,
@@ -212,9 +212,9 @@
       "seed": 19,
       "display_name": "laxus4957",
       "external_id": "894814076407013397",
-      "losses": 0,
-      "eliminated": 0,
-      "eliminated_round": null,
+      "losses": 1,
+      "eliminated": 1,
+      "eliminated_round": 4,
       "created_at": "2026-09-16T14:56:45.364188+00:00"
     }
   ],
@@ -563,10 +563,10 @@
       "match_order": 2,
       "player1_participant_id": 1002,
       "player2_participant_id": 1004,
-      "winner_participant_id": null,
-      "loser_participant_id": null,
-      "state": "open",
-      "scores_csv": null,
+      "winner_participant_id": 1002,
+      "loser_participant_id": 1004,
+      "state": "complete",
+      "scores_csv": "1-0",
       "player1_prereq_match_id": 1093,
       "player2_prereq_match_id": 1094,
       "next_match_win_id": 1097,
@@ -574,7 +574,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-09-16T14:56:45.366709+00:00",
-      "updated_at": "2026-09-19T18:23:48.152066+00:00"
+      "updated_at": "2026-09-20T18:39:18.249862+00:00"
     },
     {
       "id": 1097,
@@ -583,7 +583,7 @@
       "round_id": 5,
       "match_order": 1,
       "player1_participant_id": null,
-      "player2_participant_id": null,
+      "player2_participant_id": 1002,
       "winner_participant_id": null,
       "loser_participant_id": null,
       "state": "open",
@@ -595,7 +595,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-09-16T14:56:45.366738+00:00",
-      "updated_at": "2026-09-16T14:56:45.366738+00:00"
+      "updated_at": "2026-09-20T18:39:18.250434+00:00"
     }
   ]
 }

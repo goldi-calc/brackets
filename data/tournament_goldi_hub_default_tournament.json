@@ -6,7 +6,7 @@
   "tournament_type": "single elimination",
   "status": "ongoing",
   "current_round": 1,
-  "updated_at": "2026-09-28T14:18:43.165006+00:00",
+  "updated_at": "2026-09-29T11:50:48.808757+00:00",
   "participants": [
     {
       "id": 1005,
@@ -190,9 +190,9 @@
       "seed": 17,
       "display_name": "still_your_pokestar",
       "external_id": "951838937163382794",
-      "losses": 0,
-      "eliminated": 0,
-      "eliminated_round": null,
+      "losses": 1,
+      "eliminated": 1,
+      "eliminated_round": 1,
       "created_at": "2026-09-27T11:09:48.972967+00:00"
     },
     {
@@ -260,10 +260,10 @@
       "match_order": 1,
       "player1_participant_id": 1021,
       "player2_participant_id": 1026,
-      "winner_participant_id": null,
-      "loser_participant_id": null,
-      "state": "open",
-      "scores_csv": null,
+      "winner_participant_id": 1026,
+      "loser_participant_id": 1021,
+      "state": "complete",
+      "scores_csv": "0-1",
       "player1_prereq_match_id": null,
       "player2_prereq_match_id": null,
       "next_match_win_id": 1109,
@@ -271,7 +271,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-09-27T11:09:48.982718+00:00",
-      "updated_at": "2026-09-27T11:09:48.983087+00:00"
+      "updated_at": "2026-09-29T11:50:48.771568+00:00"
     },
     {
       "id": 1099,
@@ -490,7 +490,7 @@
       "round_id": 2,
       "match_order": 6,
       "player1_participant_id": 1015,
-      "player2_participant_id": null,
+      "player2_participant_id": 1026,
       "winner_participant_id": null,
       "loser_participant_id": null,
       "state": "open",
@@ -502,7 +502,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-09-27T11:09:48.983087+00:00",
-      "updated_at": "2026-09-27T11:09:48.983296+00:00"
+      "updated_at": "2026-09-29T11:50:48.772370+00:00"
     },
     {
       "id": 1110,

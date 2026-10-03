@@ -6,7 +6,7 @@
   "tournament_type": "single elimination",
   "status": "ongoing",
   "current_round": 1,
-  "updated_at": "2026-10-02T08:35:00.326154+00:00",
+  "updated_at": "2026-10-03T07:16:39.285890+00:00",
   "participants": [
     {
       "id": 1005,
@@ -25,9 +25,9 @@
       "seed": 2,
       "display_name": "misttua",
       "external_id": "1113414151256154122",
-      "losses": 0,
-      "eliminated": 0,
-      "eliminated_round": null,
+      "losses": 1,
+      "eliminated": 1,
+      "eliminated_round": 2,
       "created_at": "2026-09-27T11:09:48.972967+00:00"
     },
     {
@@ -533,10 +533,10 @@
       "match_order": 8,
       "player1_participant_id": 1006,
       "player2_participant_id": 1025,
-      "winner_participant_id": null,
-      "loser_participant_id": null,
-      "state": "open",
-      "scores_csv": null,
+      "winner_participant_id": 1025,
+      "loser_participant_id": 1006,
+      "state": "complete",
+      "scores_csv": "0-1",
       "player1_prereq_match_id": 1100,
       "player2_prereq_match_id": null,
       "next_match_win_id": 1115,
@@ -544,7 +544,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-09-27T11:09:48.983153+00:00",
-      "updated_at": "2026-09-28T13:16:41.435627+00:00"
+      "updated_at": "2026-10-03T07:16:39.259215+00:00"
     },
     {
       "id": 1112,
@@ -616,7 +616,7 @@
       "round_id": 3,
       "match_order": 4,
       "player1_participant_id": null,
-      "player2_participant_id": null,
+      "player2_participant_id": 1025,
       "winner_participant_id": null,
       "loser_participant_id": null,
       "state": "open",
@@ -628,7 +628,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-09-27T11:09:48.983344+00:00",
-      "updated_at": "2026-09-27T11:09:48.983412+00:00"
+      "updated_at": "2026-10-03T07:16:39.260870+00:00"
     },
     {
       "id": 1116,

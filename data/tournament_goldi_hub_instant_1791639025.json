@@ -6,7 +6,7 @@
   "tournament_type": "single elimination",
   "status": "ongoing",
   "current_round": 1,
-  "updated_at": "2026-10-10T13:55:46.409753+00:00",
+  "updated_at": "2026-10-10T14:17:51.119584+00:00",
   "participants": [
     {
       "id": 1065,
@@ -14,9 +14,9 @@
       "seed": 1,
       "display_name": "Aayush",
       "external_id": "1113310037893447771",
-      "losses": 0,
-      "eliminated": 0,
-      "eliminated_round": null,
+      "losses": 1,
+      "eliminated": 1,
+      "eliminated_round": 2,
       "created_at": "2026-10-10T13:30:25.718722+00:00"
     },
     {
@@ -297,10 +297,10 @@
       "match_order": 4,
       "player1_participant_id": 1068,
       "player2_participant_id": 1065,
-      "winner_participant_id": null,
-      "loser_participant_id": null,
-      "state": "open",
-      "scores_csv": null,
+      "winner_participant_id": 1068,
+      "loser_participant_id": 1065,
+      "state": "complete",
+      "scores_csv": "1-0",
       "player1_prereq_match_id": 1155,
       "player2_prereq_match_id": 1153,
       "next_match_win_id": 1162,
@@ -308,7 +308,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-10-10T13:30:25.755125+00:00",
-      "updated_at": "2026-10-10T13:55:08.655839+00:00"
+      "updated_at": "2026-10-10T14:17:51.086404+00:00"
     },
     {
       "id": 1161,
@@ -338,7 +338,7 @@
       "round_id": 3,
       "match_order": 2,
       "player1_participant_id": null,
-      "player2_participant_id": null,
+      "player2_participant_id": 1068,
       "winner_participant_id": null,
       "loser_participant_id": null,
       "state": "open",
@@ -350,7 +350,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-10-10T13:30:25.771820+00:00",
-      "updated_at": "2026-10-10T13:30:25.771936+00:00"
+      "updated_at": "2026-10-10T14:17:51.086825+00:00"
     },
     {
       "id": 1163,

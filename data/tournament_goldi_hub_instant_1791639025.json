@@ -6,7 +6,7 @@
   "tournament_type": "single elimination",
   "status": "ongoing",
   "current_round": 1,
-  "updated_at": "2026-10-10T14:32:13.532249+00:00",
+  "updated_at": "2026-10-10T15:17:32.202769+00:00",
   "participants": [
     {
       "id": 1065,
@@ -47,9 +47,9 @@
       "seed": 4,
       "display_name": "Reverend Convicted",
       "external_id": "855686275742171156",
-      "losses": 0,
-      "eliminated": 0,
-      "eliminated_round": null,
+      "losses": 1,
+      "eliminated": 1,
+      "eliminated_round": 3,
       "created_at": "2026-10-10T13:30:25.718722+00:00"
     },
     {
@@ -339,10 +339,10 @@
       "match_order": 2,
       "player1_participant_id": 1070,
       "player2_participant_id": 1068,
-      "winner_participant_id": null,
-      "loser_participant_id": null,
-      "state": "open",
-      "scores_csv": null,
+      "winner_participant_id": 1070,
+      "loser_participant_id": 1068,
+      "state": "complete",
+      "scores_csv": "1-0",
       "player1_prereq_match_id": 1159,
       "player2_prereq_match_id": 1160,
       "next_match_win_id": 1163,
@@ -350,7 +350,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-10-10T13:30:25.771820+00:00",
-      "updated_at": "2026-10-10T14:31:26.404308+00:00"
+      "updated_at": "2026-10-10T15:17:32.175199+00:00"
     },
     {
       "id": 1163,
@@ -359,7 +359,7 @@
       "round_id": 4,
       "match_order": 1,
       "player1_participant_id": null,
-      "player2_participant_id": null,
+      "player2_participant_id": 1070,
       "winner_participant_id": null,
       "loser_participant_id": null,
       "state": "open",
@@ -371,7 +371,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-10-10T13:30:25.771936+00:00",
-      "updated_at": "2026-10-10T13:30:25.771936+00:00"
+      "updated_at": "2026-10-10T15:17:32.176436+00:00"
     }
   ]
 }

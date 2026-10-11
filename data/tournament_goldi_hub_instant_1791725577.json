@@ -6,7 +6,7 @@
   "tournament_type": "single elimination",
   "status": "ongoing",
   "current_round": 1,
-  "updated_at": "2026-10-11T13:56:23.762283+00:00",
+  "updated_at": "2026-10-11T14:11:59.492405+00:00",
   "participants": [
     {
       "id": 1077,
@@ -25,9 +25,9 @@
       "seed": 2,
       "display_name": "Black dih of judgement",
       "external_id": "981969143358160946",
-      "losses": 0,
-      "eliminated": 0,
-      "eliminated_round": null,
+      "losses": 1,
+      "eliminated": 1,
+      "eliminated_round": 3,
       "created_at": "2026-10-11T13:32:57.783505+00:00"
     },
     {
@@ -243,10 +243,10 @@
       "match_order": 2,
       "player1_participant_id": 1078,
       "player2_participant_id": 1080,
-      "winner_participant_id": null,
-      "loser_participant_id": null,
-      "state": "open",
-      "scores_csv": null,
+      "winner_participant_id": 1080,
+      "loser_participant_id": 1078,
+      "state": "complete",
+      "scores_csv": "0-1",
       "player1_prereq_match_id": 1167,
       "player2_prereq_match_id": 1168,
       "next_match_win_id": 1171,
@@ -254,7 +254,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-10-11T13:32:57.790005+00:00",
-      "updated_at": "2026-10-11T13:48:58.939087+00:00"
+      "updated_at": "2026-10-11T14:11:59.471878+00:00"
     },
     {
       "id": 1171,
@@ -263,7 +263,7 @@
       "round_id": 4,
       "match_order": 1,
       "player1_participant_id": null,
-      "player2_participant_id": null,
+      "player2_participant_id": 1080,
       "winner_participant_id": null,
       "loser_participant_id": null,
       "state": "open",
@@ -275,7 +275,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-10-11T13:32:57.790038+00:00",
-      "updated_at": "2026-10-11T13:32:57.790038+00:00"
+      "updated_at": "2026-10-11T14:11:59.472245+00:00"
     }
   ]
 }

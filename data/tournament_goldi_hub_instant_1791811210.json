@@ -6,7 +6,7 @@
   "tournament_type": "single elimination",
   "status": "ongoing",
   "current_round": 1,
-  "updated_at": "2026-10-12T14:09:19.311992+00:00",
+  "updated_at": "2026-10-12T14:11:22.831745+00:00",
   "participants": [
     {
       "id": 1086,
@@ -69,9 +69,9 @@
       "seed": 6,
       "display_name": "Sir DJ",
       "external_id": "1283055412828045465",
-      "losses": 0,
-      "eliminated": 0,
-      "eliminated_round": null,
+      "losses": 1,
+      "eliminated": 1,
+      "eliminated_round": 3,
       "created_at": "2026-10-12T13:20:10.038647+00:00"
     },
     {
@@ -457,10 +457,10 @@
       "match_order": 4,
       "player1_participant_id": 1091,
       "player2_participant_id": 1090,
-      "winner_participant_id": null,
-      "loser_participant_id": null,
-      "state": "open",
-      "scores_csv": null,
+      "winner_participant_id": 1090,
+      "loser_participant_id": 1091,
+      "state": "complete",
+      "scores_csv": "0-1",
       "player1_prereq_match_id": 1179,
       "player2_prereq_match_id": 1180,
       "next_match_win_id": 1186,
@@ -468,7 +468,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-10-12T13:20:10.058489+00:00",
-      "updated_at": "2026-10-12T13:38:51.918851+00:00"
+      "updated_at": "2026-10-12T14:11:22.795891+00:00"
     },
     {
       "id": 1185,
@@ -498,7 +498,7 @@
       "round_id": 4,
       "match_order": 2,
       "player1_participant_id": 1094,
-      "player2_participant_id": null,
+      "player2_participant_id": 1090,
       "winner_participant_id": null,
       "loser_participant_id": null,
       "state": "open",
@@ -510,7 +510,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-10-12T13:20:10.058620+00:00",
-      "updated_at": "2026-10-12T14:06:29.460197+00:00"
+      "updated_at": "2026-10-12T14:11:22.796202+00:00"
     },
     {
       "id": 1187,

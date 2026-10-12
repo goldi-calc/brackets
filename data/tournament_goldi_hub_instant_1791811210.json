@@ -6,7 +6,7 @@
   "tournament_type": "single elimination",
   "status": "ongoing",
   "current_round": 1,
-  "updated_at": "2026-10-12T14:07:32.166867+00:00",
+  "updated_at": "2026-10-12T14:09:19.311992+00:00",
   "participants": [
     {
       "id": 1086,
@@ -135,9 +135,9 @@
       "seed": 12,
       "display_name": "yEchi",
       "external_id": "784442431688540161",
-      "losses": 0,
-      "eliminated": 0,
-      "eliminated_round": null,
+      "losses": 1,
+      "eliminated": 1,
+      "eliminated_round": 3,
       "created_at": "2026-10-12T13:20:10.038647+00:00"
     },
     {
@@ -394,10 +394,10 @@
       "match_order": 1,
       "player1_participant_id": 1096,
       "player2_participant_id": 1097,
-      "winner_participant_id": null,
-      "loser_participant_id": null,
-      "state": "open",
-      "scores_csv": null,
+      "winner_participant_id": 1096,
+      "loser_participant_id": 1097,
+      "state": "complete",
+      "scores_csv": "1-0",
       "player1_prereq_match_id": 1173,
       "player2_prereq_match_id": 1174,
       "next_match_win_id": 1185,
@@ -405,7 +405,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-10-12T13:20:10.058355+00:00",
-      "updated_at": "2026-10-12T13:34:12.707774+00:00"
+      "updated_at": "2026-10-12T14:09:19.262152+00:00"
     },
     {
       "id": 1182,
@@ -476,7 +476,7 @@
       "bracket": "W",
       "round_id": 4,
       "match_order": 1,
-      "player1_participant_id": null,
+      "player1_participant_id": 1096,
       "player2_participant_id": 1095,
       "winner_participant_id": null,
       "loser_participant_id": null,
@@ -489,7 +489,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-10-12T13:20:10.058572+00:00",
-      "updated_at": "2026-10-12T14:07:32.150336+00:00"
+      "updated_at": "2026-10-12T14:09:19.262657+00:00"
     },
     {
       "id": 1186,

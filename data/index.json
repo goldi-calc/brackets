@@ -1,6 +1,15 @@
 {
   "tournaments": [
     {
+      "slug": "__i_________instant_1791888578",
+      "name": "instant_1791888578",
+      "server_name": "__I________",
+      "tournament_type": "single elimination",
+      "status": "ongoing",
+      "player_count": 2,
+      "updated_at": "2026-10-13T10:49:48.409301+00:00"
+    },
+    {
       "slug": "__i_________instant_1791822695",
       "name": "instant_1791822695",
       "server_name": "__I________",

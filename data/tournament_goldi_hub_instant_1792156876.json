@@ -6,7 +6,7 @@
   "tournament_type": "single elimination",
   "status": "ongoing",
   "current_round": 1,
-  "updated_at": "2026-10-16T13:41:29.609451+00:00",
+  "updated_at": "2026-10-16T13:55:04.546710+00:00",
   "participants": [
     {
       "id": 1139,
@@ -36,9 +36,9 @@
       "seed": 3,
       "display_name": "DashingDennis",
       "external_id": "1350747487803019375",
-      "losses": 0,
-      "eliminated": 0,
-      "eliminated_round": null,
+      "losses": 1,
+      "eliminated": 1,
+      "eliminated_round": 2,
       "created_at": "2026-10-16T13:21:16.294124+00:00"
     },
     {
@@ -211,10 +211,10 @@
       "match_order": 2,
       "player1_participant_id": 1139,
       "player2_participant_id": 1141,
-      "winner_participant_id": null,
-      "loser_participant_id": null,
-      "state": "open",
-      "scores_csv": null,
+      "winner_participant_id": 1139,
+      "loser_participant_id": 1141,
+      "state": "complete",
+      "scores_csv": "1-0",
       "player1_prereq_match_id": 1221,
       "player2_prereq_match_id": 1222,
       "next_match_win_id": 1225,
@@ -222,7 +222,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-10-16T13:21:16.383928+00:00",
-      "updated_at": "2026-10-16T13:41:29.581123+00:00"
+      "updated_at": "2026-10-16T13:55:04.501426+00:00"
     },
     {
       "id": 1225,
@@ -231,7 +231,7 @@
       "round_id": 3,
       "match_order": 1,
       "player1_participant_id": null,
-      "player2_participant_id": null,
+      "player2_participant_id": 1139,
       "winner_participant_id": null,
       "loser_participant_id": null,
       "state": "open",
@@ -243,7 +243,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-10-16T13:21:16.383964+00:00",
-      "updated_at": "2026-10-16T13:21:16.383964+00:00"
+      "updated_at": "2026-10-16T13:55:04.501860+00:00"
     }
   ]
 }

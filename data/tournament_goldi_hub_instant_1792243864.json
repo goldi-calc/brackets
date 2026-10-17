@@ -6,7 +6,7 @@
   "tournament_type": "single elimination",
   "status": "ongoing",
   "current_round": 1,
-  "updated_at": "2026-10-17T14:21:36.072368+00:00",
+  "updated_at": "2026-10-17T14:40:20.728956+00:00",
   "participants": [
     {
       "id": 1147,
@@ -80,9 +80,9 @@
       "seed": 7,
       "display_name": "I miss her",
       "external_id": "1451150164801880208",
-      "losses": 0,
-      "eliminated": 0,
-      "eliminated_round": null,
+      "losses": 1,
+      "eliminated": 1,
+      "eliminated_round": 3,
       "created_at": "2026-10-17T13:31:04.925633+00:00"
     },
     {
@@ -350,10 +350,10 @@
       "match_order": 1,
       "player1_participant_id": 1149,
       "player2_participant_id": 1153,
-      "winner_participant_id": null,
-      "loser_participant_id": null,
-      "state": "open",
-      "scores_csv": null,
+      "winner_participant_id": 1149,
+      "loser_participant_id": 1153,
+      "state": "complete",
+      "scores_csv": "1-0",
       "player1_prereq_match_id": 1231,
       "player2_prereq_match_id": 1232,
       "next_match_win_id": 1237,
@@ -361,7 +361,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-10-17T13:31:04.961291+00:00",
-      "updated_at": "2026-10-17T14:18:27.292230+00:00"
+      "updated_at": "2026-10-17T14:40:20.712645+00:00"
     },
     {
       "id": 1236,
@@ -390,7 +390,7 @@
       "bracket": "W",
       "round_id": 4,
       "match_order": 1,
-      "player1_participant_id": null,
+      "player1_participant_id": 1149,
       "player2_participant_id": null,
       "winner_participant_id": null,
       "loser_participant_id": null,
@@ -403,7 +403,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-10-17T13:31:04.961402+00:00",
-      "updated_at": "2026-10-17T13:31:04.961402+00:00"
+      "updated_at": "2026-10-17T14:40:20.713183+00:00"
     }
   ]
 }

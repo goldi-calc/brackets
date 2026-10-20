@@ -6,7 +6,7 @@
   "tournament_type": "single elimination",
   "status": "ongoing",
   "current_round": 1,
-  "updated_at": "2026-10-20T14:09:05.024661+00:00",
+  "updated_at": "2026-10-20T14:18:50.828415+00:00",
   "participants": [
     {
       "id": 1177,
@@ -47,9 +47,9 @@
       "seed": 4,
       "display_name": "Dickisuki",
       "external_id": "1223645761149997197",
-      "losses": 0,
-      "eliminated": 0,
-      "eliminated_round": null,
+      "losses": 1,
+      "eliminated": 1,
+      "eliminated_round": 2,
       "created_at": "2026-10-20T13:52:50.467740+00:00"
     },
     {
@@ -115,10 +115,10 @@
       "match_order": 2,
       "player1_participant_id": 1180,
       "player2_participant_id": 1177,
-      "winner_participant_id": null,
-      "loser_participant_id": null,
-      "state": "open",
-      "scores_csv": null,
+      "winner_participant_id": 1177,
+      "loser_participant_id": 1180,
+      "state": "complete",
+      "scores_csv": "0-1",
       "player1_prereq_match_id": 1253,
       "player2_prereq_match_id": null,
       "next_match_win_id": 1256,
@@ -126,7 +126,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-10-20T13:52:50.493973+00:00",
-      "updated_at": "2026-10-20T14:04:13.703200+00:00"
+      "updated_at": "2026-10-20T14:18:50.817298+00:00"
     },
     {
       "id": 1256,
@@ -135,7 +135,7 @@
       "round_id": 3,
       "match_order": 1,
       "player1_participant_id": 1179,
-      "player2_participant_id": null,
+      "player2_participant_id": 1177,
       "winner_participant_id": null,
       "loser_participant_id": null,
       "state": "open",
@@ -147,7 +147,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-10-20T13:52:50.494325+00:00",
-      "updated_at": "2026-10-20T14:09:05.013516+00:00"
+      "updated_at": "2026-10-20T14:18:50.817617+00:00"
     }
   ]
 }

@@ -6,7 +6,7 @@
   "tournament_type": "single elimination",
   "status": "ongoing",
   "current_round": 1,
-  "updated_at": "2026-10-24T15:41:39.344709+00:00",
+  "updated_at": "2026-10-24T15:50:33.809695+00:00",
   "participants": [
     {
       "id": 1208,
@@ -25,9 +25,9 @@
       "seed": 2,
       "display_name": "Arthur",
       "external_id": "853269498798931980",
-      "losses": 0,
-      "eliminated": 0,
-      "eliminated_round": null,
+      "losses": 1,
+      "eliminated": 1,
+      "eliminated_round": 3,
       "created_at": "2026-10-24T14:24:24.938314+00:00"
     },
     {
@@ -200,10 +200,10 @@
       "match_order": 1,
       "player1_participant_id": 1208,
       "player2_participant_id": 1209,
-      "winner_participant_id": null,
-      "loser_participant_id": null,
-      "state": "open",
-      "scores_csv": null,
+      "winner_participant_id": 1208,
+      "loser_participant_id": 1209,
+      "state": "complete",
+      "scores_csv": "1-0",
       "player1_prereq_match_id": 1283,
       "player2_prereq_match_id": 1284,
       "next_match_win_id": null,
@@ -211,7 +211,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-10-24T14:24:24.945756+00:00",
-      "updated_at": "2026-10-24T15:41:39.336281+00:00"
+      "updated_at": "2026-10-24T15:50:33.799552+00:00"
     }
   ]
 }

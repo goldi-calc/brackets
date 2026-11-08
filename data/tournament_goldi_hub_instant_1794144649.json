@@ -1,0 +1,89 @@
+{
+  "slug": "goldi_hub_instant_1794144649",
+  "name": "Goldi_Hub_instant_1794144649",
+  "server_name": "Goldi_Hub",
+  "tournament_name": "instant_1794144649",
+  "tournament_type": "single elimination",
+  "status": "ongoing",
+  "current_round": 1,
+  "updated_at": "2026-11-08T13:32:42.287579+00:00",
+  "participants": [
+    {
+      "id": 1255,
+      "tournament_id": 128,
+      "seed": 1,
+      "display_name": "Haze",
+      "external_id": "960050792939806770",
+      "losses": 0,
+      "eliminated": 0,
+      "eliminated_round": null,
+      "created_at": "2026-11-08T13:30:49.854770+00:00"
+    },
+    {
+      "id": 1256,
+      "tournament_id": 128,
+      "seed": 2,
+      "display_name": "Mir",
+      "external_id": "659666504719138817",
+      "losses": 1,
+      "eliminated": 1,
+      "eliminated_round": 1,
+      "created_at": "2026-11-08T13:30:49.854770+00:00"
+    },
+    {
+      "id": 1257,
+      "tournament_id": 128,
+      "seed": 3,
+      "display_name": "betterig",
+      "external_id": "1422930101934227498",
+      "losses": 0,
+      "eliminated": 0,
+      "eliminated_round": null,
+      "created_at": "2026-11-08T13:30:49.854770+00:00"
+    }
+  ],
+  "matches": [
+    {
+      "id": 1319,
+      "tournament_id": 128,
+      "bracket": "W",
+      "round_id": 1,
+      "match_order": 1,
+      "player1_participant_id": 1256,
+      "player2_participant_id": 1257,
+      "winner_participant_id": 1257,
+      "loser_participant_id": 1256,
+      "state": "complete",
+      "scores_csv": "0-1",
+      "player1_prereq_match_id": null,
+      "player2_prereq_match_id": null,
+      "next_match_win_id": 1320,
+      "next_match_win_slot": 2,
+      "next_match_lose_id": null,
+      "next_match_lose_slot": null,
+      "created_at": "2026-11-08T13:30:49.859624+00:00",
+      "updated_at": "2026-11-08T13:32:42.278400+00:00"
+    },
+    {
+      "id": 1320,
+      "tournament_id": 128,
+      "bracket": "W",
+      "round_id": 2,
+      "match_order": 1,
+      "player1_participant_id": 1255,
+      "player2_participant_id": 1257,
+      "winner_participant_id": null,
+      "loser_participant_id": null,
+      "state": "open",
+      "scores_csv": null,
+      "player1_prereq_match_id": null,
+      "player2_prereq_match_id": 1319,
+      "next_match_win_id": null,
+      "next_match_win_slot": null,
+      "next_match_lose_id": null,
+      "next_match_lose_slot": null,
+      "created_at": "2026-11-08T13:30:49.862241+00:00",
+      "updated_at": "2026-11-08T13:32:42.279081+00:00"
+    }
+  ]
+}

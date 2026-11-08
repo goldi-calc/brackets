@@ -6,7 +6,7 @@
   "tournament_type": "single elimination",
   "status": "ongoing",
   "current_round": 1,
-  "updated_at": "2026-11-08T14:04:28.009610+00:00",
+  "updated_at": "2026-11-08T14:29:50.339850+00:00",
   "participants": [
     {
       "id": 1258,
@@ -25,9 +25,9 @@
       "seed": 2,
       "display_name": "Mir",
       "external_id": "659666504719138817",
-      "losses": 0,
-      "eliminated": 0,
-      "eliminated_round": null,
+      "losses": 1,
+      "eliminated": 1,
+      "eliminated_round": 2,
       "created_at": "2026-11-08T13:46:04.900508+00:00"
     },
     {
@@ -115,10 +115,10 @@
       "match_order": 2,
       "player1_participant_id": 1259,
       "player2_participant_id": 1258,
-      "winner_participant_id": null,
-      "loser_participant_id": null,
-      "state": "open",
-      "scores_csv": null,
+      "winner_participant_id": 1258,
+      "loser_participant_id": 1259,
+      "state": "complete",
+      "scores_csv": "0-1",
       "player1_prereq_match_id": null,
       "player2_prereq_match_id": 1321,
       "next_match_win_id": 1324,
@@ -126,7 +126,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-11-08T13:46:04.902078+00:00",
-      "updated_at": "2026-11-08T14:04:27.996383+00:00"
+      "updated_at": "2026-11-08T14:29:50.264181+00:00"
     },
     {
       "id": 1324,
@@ -135,7 +135,7 @@
       "round_id": 3,
       "match_order": 1,
       "player1_participant_id": 1261,
-      "player2_participant_id": null,
+      "player2_participant_id": 1258,
       "winner_participant_id": null,
       "loser_participant_id": null,
       "state": "open",
@@ -147,7 +147,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-11-08T13:46:04.902174+00:00",
-      "updated_at": "2026-11-08T14:00:29.810280+00:00"
+      "updated_at": "2026-11-08T14:29:50.266798+00:00"
     }
   ]
 }

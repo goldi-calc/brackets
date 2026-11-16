@@ -6,7 +6,7 @@
   "tournament_type": "single elimination",
   "status": "ongoing",
   "current_round": 1,
-  "updated_at": "2026-11-16T13:35:47.683627+00:00",
+  "updated_at": "2026-11-16T13:41:34.472021+00:00",
   "participants": [
     {
       "id": 1287,
@@ -14,9 +14,9 @@
       "seed": 1,
       "display_name": "THUMP//sh Yveltal",
       "external_id": "1186110814864822314",
-      "losses": 0,
-      "eliminated": 0,
-      "eliminated_round": null,
+      "losses": 1,
+      "eliminated": 1,
+      "eliminated_round": 2,
       "created_at": "2026-11-16T13:31:23.794895+00:00"
     },
     {
@@ -94,10 +94,10 @@
       "match_order": 1,
       "player1_participant_id": 1287,
       "player2_participant_id": 1290,
-      "winner_participant_id": null,
-      "loser_participant_id": null,
-      "state": "open",
-      "scores_csv": null,
+      "winner_participant_id": 1290,
+      "loser_participant_id": 1287,
+      "state": "complete",
+      "scores_csv": "0-1",
       "player1_prereq_match_id": null,
       "player2_prereq_match_id": null,
       "next_match_win_id": 1346,
@@ -105,7 +105,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-11-16T13:31:23.892173+00:00",
-      "updated_at": "2026-11-16T13:31:23.892452+00:00"
+      "updated_at": "2026-11-16T13:41:34.455147+00:00"
     },
     {
       "id": 1345,
@@ -134,7 +134,7 @@
       "bracket": "W",
       "round_id": 3,
       "match_order": 1,
-      "player1_participant_id": null,
+      "player1_participant_id": 1290,
       "player2_participant_id": null,
       "winner_participant_id": null,
       "loser_participant_id": null,
@@ -147,7 +147,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-11-16T13:31:23.892452+00:00",
-      "updated_at": "2026-11-16T13:31:23.892452+00:00"
+      "updated_at": "2026-11-16T13:41:34.455533+00:00"
     }
   ]
 }

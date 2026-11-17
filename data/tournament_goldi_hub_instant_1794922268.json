@@ -6,7 +6,7 @@
   "tournament_type": "single elimination",
   "status": "ongoing",
   "current_round": 1,
-  "updated_at": "2026-11-17T13:40:16.631612+00:00",
+  "updated_at": "2026-11-17T13:43:15.672139+00:00",
   "participants": [
     {
       "id": 1292,
@@ -47,9 +47,9 @@
       "seed": 4,
       "display_name": "Gy shi",
       "external_id": "981969143358160946",
-      "losses": 0,
-      "eliminated": 0,
-      "eliminated_round": null,
+      "losses": 1,
+      "eliminated": 1,
+      "eliminated_round": 1,
       "created_at": "2026-11-17T13:31:08.540959+00:00"
     },
     {
@@ -137,10 +137,10 @@
       "match_order": 3,
       "player1_participant_id": 1297,
       "player2_participant_id": 1295,
-      "winner_participant_id": null,
-      "loser_participant_id": null,
-      "state": "open",
-      "scores_csv": null,
+      "winner_participant_id": 1297,
+      "loser_participant_id": 1295,
+      "state": "complete",
+      "scores_csv": "1-0",
       "player1_prereq_match_id": null,
       "player2_prereq_match_id": null,
       "next_match_win_id": 1350,
@@ -148,7 +148,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-11-17T13:31:08.636025+00:00",
-      "updated_at": "2026-11-17T13:31:08.636092+00:00"
+      "updated_at": "2026-11-17T13:43:15.615808+00:00"
     },
     {
       "id": 1350,
@@ -157,7 +157,7 @@
       "round_id": 2,
       "match_order": 1,
       "player1_participant_id": 1292,
-      "player2_participant_id": null,
+      "player2_participant_id": 1297,
       "winner_participant_id": null,
       "loser_participant_id": null,
       "state": "open",
@@ -169,7 +169,7 @@
       "next_match_lose_id": null,
       "next_match_lose_slot": null,
       "created_at": "2026-11-17T13:31:08.636092+00:00",
-      "updated_at": "2026-11-17T13:31:08.654719+00:00"
+      "updated_at": "2026-11-17T13:43:15.616245+00:00"
     },
     {
       "id": 1351,
